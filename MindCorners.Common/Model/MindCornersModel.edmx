@@ -1,0 +1,1381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MindCornersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Circles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsGroup" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="CreatorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifierId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateDeleted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CircleUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CircleId" Type="uniqueidentifier" />
+          <Property Name="IsMainPerson" Type="bit" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="State" Type="tinyint" />
+          <Property Name="StateDate" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="CreatorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifierId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateDeleted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Configs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrganizationId" Type="uniqueidentifier" />
+          <Property Name="Type" Type="smallint" Nullable="false" />
+          <Property Name="FriendlyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Value" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="CreatorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifierId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateDeleted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GridState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModuleId" Type="int" Nullable="false" />
+          <Property Name="LayoutData" Type="nvarchar(max)" />
+          <Property Name="ShowFilter" Type="bit" Nullable="false" />
+          <Property Name="Filter" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Invitations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrganizationId" Type="uniqueidentifier" />
+          <Property Name="InviatorId" Type="uniqueidentifier" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="tinyint" />
+          <Property Name="StateDate" Type="datetime" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="ActivationCode" Type="varchar" MaxLength="10" />
+          <Property Name="ExpireDate" Type="date" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="CreatorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifierId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateDeleted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MessageTemplates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsEmail" Type="bit" Nullable="false" />
+          <Property Name="Type" Type="smallint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Body" Type="ntext" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="CreatorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifierId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateDeleted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NotificationRecipients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NotificationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CircleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RecieveDate" Type="datetime" Nullable="false" />
+          <Property Name="ReadDate" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="CreatorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifierId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateDeleted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Notifications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SenderId" Type="uniqueidentifier" />
+          <Property Name="Body" Type="ntext" />
+          <Property Name="SourceId" Type="uniqueidentifier" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="ReadDate" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="CreatorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifierId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateDeleted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Organizations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Logo" Type="image" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="CreatorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifierId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateDeleted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PostAttachments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PostId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="IsMainAttachment" Type="bit" Nullable="false" />
+          <Property Name="Text" Type="ntext" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="1000" />
+          <Property Name="FileDuration" Type="float" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="CreatorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifierId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateDeleted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ParentId" Type="uniqueidentifier" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="Type" Type="int" />
+          <Property Name="CircleId" Type="uniqueidentifier" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="LastUpdatedUserId" Type="uniqueidentifier" />
+          <Property Name="LastUpdatedDate" Type="datetime" />
+          <Property Name="LastAttachmentType" Type="int" />
+          <Property Name="LastAttachmentId" Type="uniqueidentifier" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="CreatorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifierId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateDeleted" Type="datetime" />
+          <Property Name="HasReplies" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PostTemplates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="CreatorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifierId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateDeleted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TextTemplates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="CreatorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifierId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateDeleted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserContacts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MainUserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ContactUserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="State" Type="tinyint" />
+          <Property Name="StateDate" Type="datetime" />
+          <Property Name="ContactName" Type="nvarchar" MaxLength="200" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="CreatorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifierId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateDeleted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserProfiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrganizationId" Type="uniqueidentifier" />
+          <Property Name="Type" Type="smallint" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="CreatorId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifierId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="User_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProfileImage" Type="image" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateDeleted" Type="datetime" />
+          <Property Name="ProfileImageString" Type="nvarchar" MaxLength="500" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="2001" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <Association Name="FK_CircleUsers_Circles">
+          <End Role="Circles" Type="Self.Circles" Multiplicity="0..1" />
+          <End Role="CircleUsers" Type="Self.CircleUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Circles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CircleUsers">
+              <PropertyRef Name="CircleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserProfiles_dbo_AspNetUsers_User_Id">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UserProfiles" Type="Self.UserProfiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfiles">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GridState_UserProfiles">
+          <End Role="UserProfiles" Type="Self.UserProfiles" Multiplicity="1" />
+          <End Role="GridState" Type="Self.GridState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfiles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GridState">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Circles">
+          <End Role="Circles" Type="Self.Circles" Multiplicity="0..1" />
+          <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Circles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="CircleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Posts">
+          <End Role="Posts" Type="Self.Posts" Multiplicity="0..1" />
+          <End Role="Posts1" Type="Self.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Posts1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfiles_Organizations">
+          <End Role="Organizations" Type="Self.Organizations" Multiplicity="0..1" />
+          <End Role="UserProfiles" Type="Self.UserProfiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfiles">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Configs_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+                <Property Name="OrganizationId" Type="uniqueidentifier" />
+                <Property Name="Type" Type="smallint" Nullable="false" />
+                <Property Name="FriendlyName" Type="nvarchar" MaxLength="100" />
+                <Property Name="DateCreated" Type="datetime" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="MessageTemplates_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+                <Property Name="IsEmail" Type="bit" Nullable="false" />
+                <Property Name="Type" Type="smallint" Nullable="false" />
+                <Property Name="Name" Type="nvarchar" MaxLength="100" />
+                <Property Name="DateCreated" Type="datetime" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Notifications_GetAllByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Count" Type="int" Mode="In" />
+          <Parameter Name="Skip" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+                <Property Name="SenderId" Type="uniqueidentifier" />
+                <Property Name="Body" Type="ntext" />
+                <Property Name="DateCreated" Type="datetime" Nullable="false" />
+                <Property Name="SourceId" Type="uniqueidentifier" />
+                <Property Name="Type" Type="int" Nullable="false" />
+                <Property Name="ReadDate" Type="datetime" />
+                <Property Name="UserId" Type="uniqueidentifier" />
+                <Property Name="UserCreatorFullName" Type="nvarchar" MaxLength="2001" />
+                <Property Name="UserProfileImageName" Type="nvarchar" MaxLength="500" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Organizations_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+                <Property Name="Name" Type="nvarchar" MaxLength="500" />
+                <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Posts_GetForList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Count" Type="int" Mode="In" />
+          <Parameter Name="Skip" Type="int" Mode="In" />
+          <Parameter Name="SearchText" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+                <Property Name="Title" Type="nvarchar" MaxLength="500" />
+                <Property Name="Type" Type="int" />
+                <Property Name="CircleId" Type="uniqueidentifier" />
+                <Property Name="UserId" Type="uniqueidentifier" />
+                <Property Name="CircleName" Type="nvarchar" MaxLength="2001" />
+                <Property Name="CreatorId" Type="uniqueidentifier" Nullable="false" />
+                <Property Name="UserCreatorFullName" Type="nvarchar" MaxLength="2001" />
+                <Property Name="LastUpdatedUserId" Type="uniqueidentifier" />
+                <Property Name="UserLastUpdatedFullName" Type="nvarchar" MaxLength="2001" />
+                <Property Name="LastUpdatedDate" Type="datetime" />
+                <Property Name="LastAttachmentType" Type="int" />
+                <Property Name="LastAttachmentId" Type="uniqueidentifier" />
+                <Property Name="DateCreated" Type="datetime" Nullable="false" />
+                <Property Name="UserProfileImageName" Type="nvarchar" MaxLength="500" />
+                <Property Name="HasReplies" Type="bit" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Posts_GetThemeItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PostId" Type="uniqueidentifier" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+                <Property Name="Title" Type="nvarchar" MaxLength="500" />
+                <Property Name="Type" Type="int" />
+                <Property Name="CircleId" Type="uniqueidentifier" />
+                <Property Name="UserId" Type="uniqueidentifier" />
+                <Property Name="CircleName" Type="nvarchar" MaxLength="2001" />
+                <Property Name="CreatorId" Type="uniqueidentifier" Nullable="false" />
+                <Property Name="UserCreatorFullName" Type="nvarchar" MaxLength="2001" />
+                <Property Name="LastUpdatedUserId" Type="uniqueidentifier" />
+                <Property Name="UserLastUpdatedFullName" Type="nvarchar" MaxLength="2001" />
+                <Property Name="LastUpdatedDate" Type="datetime" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Users_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+                <Property Name="User_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+                <Property Name="FirstName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="LastName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="StartDate" Type="datetime" Nullable="false" />
+                <Property Name="EndDate" Type="datetime" />
+                <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+                <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+                <Property Name="RoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+                <Property Name="OrganizationId" Type="uniqueidentifier" />
+                <Property Name="OrganizationName" Type="nvarchar" MaxLength="500" />
+                <Property Name="DateCreated" Type="datetime" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <EntityContainer Name="MindCornersModelStoreContainer">
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Circles" EntityType="Self.Circles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CircleUsers" EntityType="Self.CircleUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Configs" EntityType="Self.Configs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GridState" EntityType="Self.GridState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invitations" EntityType="Self.Invitations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageTemplates" EntityType="Self.MessageTemplates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotificationRecipients" EntityType="Self.NotificationRecipients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organizations" EntityType="Self.Organizations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostAttachments" EntityType="Self.PostAttachments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostTemplates" EntityType="Self.PostTemplates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TextTemplates" EntityType="Self.TextTemplates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserContacts" EntityType="Self.UserContacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfiles" EntityType="Self.UserProfiles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CircleUsers_Circles" Association="Self.FK_CircleUsers_Circles">
+            <End Role="Circles" EntitySet="Circles" />
+            <End Role="CircleUsers" EntitySet="CircleUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserProfiles_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_UserProfiles_dbo_AspNetUsers_User_Id">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UserProfiles" EntitySet="UserProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GridState_UserProfiles" Association="Self.FK_GridState_UserProfiles">
+            <End Role="UserProfiles" EntitySet="UserProfiles" />
+            <End Role="GridState" EntitySet="GridState" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Circles" Association="Self.FK_Posts_Circles">
+            <End Role="Circles" EntitySet="Circles" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Posts" Association="Self.FK_Posts_Posts">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="Posts1" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfiles_Organizations" Association="Self.FK_UserProfiles_Organizations">
+            <End Role="Organizations" EntitySet="Organizations" />
+            <End Role="UserProfiles" EntitySet="UserProfiles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MindCornersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Circle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorId" Type="Guid" Nullable="false" />
+          <Property Name="ModifierId" Type="Guid" Nullable="false" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CircleUsers" Relationship="Self.FK_CircleUsers_Circles" FromRole="Circles" ToRole="CircleUsers" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK_Posts_Circles" FromRole="Circles" ToRole="Posts" />
+          <Property Name="IsGroup" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorId" Type="Guid" Nullable="false" />
+          <Property Name="ModifierId" Type="Guid" Nullable="false" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="UserProfiles" Relationship="MindCornersModel.FK_UserProfiles_Organizations" FromRole="Organization" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ParentId" Type="Guid" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="CircleId" Type="Guid" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorId" Type="Guid" Nullable="false" />
+          <Property Name="ModifierId" Type="Guid" Nullable="false" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Circle" Relationship="Self.FK_Posts_Circles" FromRole="Posts" ToRole="Circles" />
+          <NavigationProperty Name="Posts1" Relationship="Self.FK_Posts_Posts" FromRole="Posts" ToRole="Posts1" />
+          <NavigationProperty Name="Post1" Relationship="Self.FK_Posts_Posts" FromRole="Posts1" ToRole="Posts" />
+          <Property Name="LastUpdatedUserId" Type="Guid" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="LastAttachmentType" Type="Int32" />
+          <Property Name="LastAttachmentId" Type="Guid" />
+          <Property Name="HasReplies" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CircleUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CircleId" Type="Guid" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorId" Type="Guid" Nullable="false" />
+          <Property Name="ModifierId" Type="Guid" Nullable="false" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Circle" Relationship="Self.FK_CircleUsers_Circles" FromRole="CircleUsers" ToRole="Circles" />
+          <Property Name="IsMainPerson" Type="Boolean" Nullable="false" />
+          <Property Name="State" Type="Byte" />
+          <Property Name="StateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_CircleUsers_Circles">
+          <End Role="Circles" Type="Self.Circle" Multiplicity="0..1" />
+          <End Role="CircleUsers" Type="Self.CircleUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Circles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CircleUsers">
+              <PropertyRef Name="CircleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Circles">
+          <End Role="Circles" Type="Self.Circle" Multiplicity="0..1" />
+          <End Role="Posts" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Circles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="CircleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Posts">
+          <End Role="Posts" Type="Self.Post" Multiplicity="0..1" />
+          <End Role="Posts1" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Posts1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MindCornersEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Circles" EntityType="Self.Circle" />
+          <EntitySet Name="Organizations" EntityType="Self.Organization" />
+          <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="CircleUsers" EntityType="Self.CircleUser" />
+          <AssociationSet Name="FK_CircleUsers_Circles" Association="Self.FK_CircleUsers_Circles">
+            <End Role="Circles" EntitySet="Circles" />
+            <End Role="CircleUsers" EntitySet="CircleUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Circles" Association="Self.FK_Posts_Circles">
+            <End Role="Circles" EntitySet="Circles" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Posts" Association="Self.FK_Posts_Posts">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="Posts1" EntitySet="Posts" />
+          </AssociationSet>
+          <EntitySet Name="UserProfiles" EntityType="MindCornersModel.UserProfile" />
+          <EntitySet Name="GridStates" EntityType="MindCornersModel.GridState" />
+          <AssociationSet Name="FK_GridState_UserProfiles" Association="MindCornersModel.FK_GridState_UserProfiles">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="GridState" EntitySet="GridStates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfiles_Organizations" Association="MindCornersModel.FK_UserProfiles_Organizations">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+          </AssociationSet>
+          <FunctionImport Name="Organizations_GetAll" IsComposable="true" ReturnType="Collection(MindCornersModel.Organizations_GetAll_Result)" />
+          <EntitySet Name="MessageTemplates" EntityType="MindCornersModel.MessageTemplate" />
+          <EntitySet Name="NotificationRecipients" EntityType="MindCornersModel.NotificationRecipient" />
+          <EntitySet Name="Notifications" EntityType="MindCornersModel.Notification" />
+          <EntitySet Name="PostTemplates" EntityType="MindCornersModel.PostTemplate" />
+          <FunctionImport Name="MessageTemplates_GetAll" IsComposable="true" ReturnType="Collection(MindCornersModel.MessageTemplates_GetAll_Result)" />
+          <FunctionImport Name="Users_GetAll" IsComposable="true" ReturnType="Collection(MindCornersModel.Users_GetAll_Result)" />
+          <EntitySet Name="Configs" EntityType="MindCornersModel.Config" />
+          <FunctionImport Name="Configs_GetAll" IsComposable="true" ReturnType="Collection(MindCornersModel.Configs_GetAll_Result)" />
+          <EntitySet Name="UserContacts" EntityType="MindCornersModel.UserContact" />
+          <EntitySet Name="Invitations" EntityType="MindCornersModel.Invitation" />
+          <EntitySet Name="AspNetUsers" EntityType="MindCornersModel.AspNetUser" />
+          <AssociationSet Name="FK_dbo_UserProfiles_dbo_AspNetUsers_User_Id" Association="MindCornersModel.FK_dbo_UserProfiles_dbo_AspNetUsers_User_Id">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+          </AssociationSet>
+          <FunctionImport Name="Posts_GetForList" IsComposable="true" ReturnType="Collection(MindCornersModel.Posts_GetForList_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="Count" Mode="In" Type="Int32" />
+            <Parameter Name="Skip" Mode="In" Type="Int32" />
+            <Parameter Name="SearchText" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Posts_GetThemeItem" IsComposable="true" ReturnType="Collection(MindCornersModel.Posts_GetThemeItem_Result)">
+          <Parameter Name="PostId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <EntitySet Name="TextTemplates" EntityType="MindCornersModel.TextTemplate" />
+          <EntitySet Name="PostAttachments" EntityType="MindCornersModel.PostAttachment" />
+          <FunctionImport Name="Notifications_GetAllByUser" IsComposable="true" ReturnType="Collection(MindCornersModel.Notifications_GetAllByUser_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="Count" Mode="In" Type="Int32" />
+            <Parameter Name="Skip" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="OrganizationId" Type="Guid" />
+          <Property Name="Type" Type="Int16" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorId" Type="Guid" Nullable="false" />
+          <Property Name="ModifierId" Type="Guid" Nullable="false" />
+          <Property Name="User_Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProfileImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GridStates" Relationship="MindCornersModel.FK_GridState_UserProfiles" FromRole="UserProfile" ToRole="GridState" />
+          <NavigationProperty Name="Organization" Relationship="MindCornersModel.FK_UserProfiles_Organizations" FromRole="UserProfile" ToRole="Organization" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+          <Property Name="ProfileImageString" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="MindCornersModel.FK_dbo_UserProfiles_dbo_AspNetUsers_User_Id" FromRole="UserProfile" ToRole="AspNetUser" />
+          <Property Name="FullName" Type="String" MaxLength="2001" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="GridState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="ModuleId" Type="Int32" Nullable="false" />
+          <Property Name="LayoutData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShowFilter" Type="Boolean" Nullable="false" />
+          <Property Name="Filter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserProfile" Relationship="MindCornersModel.FK_GridState_UserProfiles" FromRole="GridState" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK_GridState_UserProfiles">
+          <End Type="MindCornersModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="MindCornersModel.GridState" Role="GridState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GridState">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfiles_Organizations">
+          <End Type="MindCornersModel.Organization" Role="Organization" Multiplicity="0..1" />
+          <End Type="MindCornersModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="Organizations_GetAll_Result">
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ShortName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="MessageTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="IsEmail" Type="Boolean" Nullable="false" />
+          <Property Name="Type" Type="Int16" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorId" Type="Guid" Nullable="false" />
+          <Property Name="ModifierId" Type="Guid" Nullable="false" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="NotificationRecipient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="NotificationId" Type="Guid" Nullable="false" />
+          <Property Name="CircleId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="RecieveDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReadDate" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorId" Type="Guid" Nullable="false" />
+          <Property Name="ModifierId" Type="Guid" Nullable="false" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="SenderId" Type="Guid" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorId" Type="Guid" Nullable="false" />
+          <Property Name="ModifierId" Type="Guid" Nullable="false" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+          <Property Name="SourceId" Type="Guid" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="ReadDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PostTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorId" Type="Guid" Nullable="false" />
+          <Property Name="ModifierId" Type="Guid" Nullable="false" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="MessageTemplates_GetAll_Result">
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Boolean" Name="IsEmail" Nullable="false" />
+          <Property Type="Int16" Name="Type" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="Users_GetAll_Result">
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="User_Id" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="RoleId" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="RoleName" Nullable="false" MaxLength="256" />
+          <Property Type="Guid" Name="OrganizationId" Nullable="true" />
+          <Property Type="String" Name="OrganizationName" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="23" />
+        </ComplexType>
+        <EntityType Name="Config">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="OrganizationId" Type="Guid" />
+          <Property Name="Type" Type="Int16" Nullable="false" />
+          <Property Name="FriendlyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorId" Type="Guid" Nullable="false" />
+          <Property Name="ModifierId" Type="Guid" Nullable="false" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="Configs_GetAll_Result">
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="OrganizationId" Nullable="true" />
+          <Property Type="Int16" Name="Type" Nullable="false" />
+          <Property Type="String" Name="FriendlyName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="23" />
+        </ComplexType>
+        <EntityType Name="UserContact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="MainUserId" Type="Guid" Nullable="false" />
+          <Property Name="ContactUserId" Type="Guid" Nullable="false" />
+          <Property Name="State" Type="Byte" />
+          <Property Name="StateDate" Type="DateTime" Precision="3" />
+          <Property Name="ContactName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorId" Type="Guid" Nullable="false" />
+          <Property Name="ModifierId" Type="Guid" Nullable="false" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Invitation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="OrganizationId" Type="Guid" />
+          <Property Name="InviatorId" Type="Guid" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="Byte" />
+          <Property Name="StateDate" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="ActivationCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ExpireDate" Type="DateTime" Precision="0" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorId" Type="Guid" Nullable="false" />
+          <Property Name="ModifierId" Type="Guid" Nullable="false" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserProfiles" Relationship="MindCornersModel.FK_dbo_UserProfiles_dbo_AspNetUsers_User_Id" FromRole="AspNetUser" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK_dbo_UserProfiles_dbo_AspNetUsers_User_Id">
+          <End Type="MindCornersModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="MindCornersModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="Posts_GetForList_Result">
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="500" />
+          <Property Type="Guid" Name="CircleId" Nullable="true" />
+          <Property Type="Guid" Name="CreatorId" Nullable="false" />
+          <Property Type="String" Name="UserCreatorFullName" Nullable="true" MaxLength="2001" />
+          <Property Type="Guid" Name="LastUpdatedUserId" Nullable="true" />
+          <Property Type="String" Name="UserLastUpdatedFullName" Nullable="true" MaxLength="2001" />
+          <Property Type="DateTime" Name="LastUpdatedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CircleName" Nullable="true" MaxLength="2001" />
+          <Property Type="Guid" Name="UserId" Nullable="true" />
+          <Property Type="Int32" Name="LastAttachmentType" Nullable="true" />
+          <Property Type="Guid" Name="LastAttachmentId" Nullable="true" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UserProfileImageName" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Type" Nullable="true" />
+          <Property Type="Boolean" Name="HasReplies" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Posts_GetThemeItem_Result">
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Type" Nullable="true" />
+          <Property Type="Guid" Name="CircleId" Nullable="true" />
+          <Property Type="String" Name="CircleName" Nullable="true" MaxLength="2001" />
+          <Property Type="Guid" Name="CreatorId" Nullable="false" />
+          <Property Type="String" Name="UserCreatorFullName" Nullable="true" MaxLength="2001" />
+          <Property Type="Guid" Name="LastUpdatedUserId" Nullable="true" />
+          <Property Type="String" Name="UserLastUpdatedFullName" Nullable="true" MaxLength="2001" />
+          <Property Type="DateTime" Name="LastUpdatedDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <EntityType Name="TextTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorId" Type="Guid" Nullable="false" />
+          <Property Name="ModifierId" Type="Guid" Nullable="false" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PostAttachment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PostId" Type="Guid" Nullable="false" />
+          <Property Name="IsMainAttachment" Type="Boolean" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FilePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorId" Type="Guid" Nullable="false" />
+          <Property Name="ModifierId" Type="Guid" Nullable="false" />
+          <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="FileDuration" Type="Double" />
+        </EntityType>
+        <ComplexType Name="Notifications_GetAllByUser_Result">
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="SenderId" Nullable="true" />
+          <Property Type="String" Name="Body" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="23" />
+          <Property Type="Guid" Name="SourceId" Nullable="true" />
+          <Property Type="DateTime" Name="ReadDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UserCreatorFullName" Nullable="true" MaxLength="2001" />
+          <Property Type="String" Name="UserProfileImageName" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Type" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MindCornersModelStoreContainer" CdmEntityContainer="MindCornersEntities">
+          <EntitySetMapping Name="Circles">
+            <EntityTypeMapping TypeName="MindCornersModel.Circle">
+              <MappingFragment StoreEntitySet="Circles">
+                <ScalarProperty Name="IsGroup" ColumnName="IsGroup" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizations">
+            <EntityTypeMapping TypeName="MindCornersModel.Organization">
+              <MappingFragment StoreEntitySet="Organizations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="MindCornersModel.Post">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="HasReplies" ColumnName="HasReplies" />
+                <ScalarProperty Name="LastAttachmentId" ColumnName="LastAttachmentId" />
+                <ScalarProperty Name="LastAttachmentType" ColumnName="LastAttachmentType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="LastUpdatedUserId" ColumnName="LastUpdatedUserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="CircleId" ColumnName="CircleId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CircleUsers">
+            <EntityTypeMapping TypeName="MindCornersModel.CircleUser">
+              <MappingFragment StoreEntitySet="CircleUsers">
+                <ScalarProperty Name="StateDate" ColumnName="StateDate" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="IsMainPerson" ColumnName="IsMainPerson" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CircleId" ColumnName="CircleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="MindCornersModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfiles">
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ProfileImageString" ColumnName="ProfileImageString" />
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GridStates">
+            <EntityTypeMapping TypeName="MindCornersModel.GridState">
+              <MappingFragment StoreEntitySet="GridState">
+                <ScalarProperty Name="Filter" ColumnName="Filter" />
+                <ScalarProperty Name="ShowFilter" ColumnName="ShowFilter" />
+                <ScalarProperty Name="LayoutData" ColumnName="LayoutData" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Organizations_GetAll" FunctionName="MindCornersModel.Store.Organizations_GetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MindCornersModel.Organizations_GetAll_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="MessageTemplates">
+            <EntityTypeMapping TypeName="MindCornersModel.MessageTemplate">
+              <MappingFragment StoreEntitySet="MessageTemplates">
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IsEmail" ColumnName="IsEmail" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotificationRecipients">
+            <EntityTypeMapping TypeName="MindCornersModel.NotificationRecipient">
+              <MappingFragment StoreEntitySet="NotificationRecipients">
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ReadDate" ColumnName="ReadDate" />
+                <ScalarProperty Name="RecieveDate" ColumnName="RecieveDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CircleId" ColumnName="CircleId" />
+                <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="MindCornersModel.Notification">
+              <MappingFragment StoreEntitySet="Notifications">
+                <ScalarProperty Name="ReadDate" ColumnName="ReadDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostTemplates">
+            <EntityTypeMapping TypeName="MindCornersModel.PostTemplate">
+              <MappingFragment StoreEntitySet="PostTemplates">
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="MessageTemplates_GetAll" FunctionName="MindCornersModel.Store.MessageTemplates_GetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MindCornersModel.MessageTemplates_GetAll_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IsEmail" ColumnName="IsEmail" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Users_GetAll" FunctionName="MindCornersModel.Store.Users_GetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MindCornersModel.Users_GetAll_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Configs">
+            <EntityTypeMapping TypeName="MindCornersModel.Config">
+              <MappingFragment StoreEntitySet="Configs">
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="FriendlyName" ColumnName="FriendlyName" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Configs_GetAll" FunctionName="MindCornersModel.Store.Configs_GetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MindCornersModel.Configs_GetAll_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="FriendlyName" ColumnName="FriendlyName" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="UserContacts">
+            <EntityTypeMapping TypeName="MindCornersModel.UserContact">
+              <MappingFragment StoreEntitySet="UserContacts">
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="StateDate" ColumnName="StateDate" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ContactUserId" ColumnName="ContactUserId" />
+                <ScalarProperty Name="MainUserId" ColumnName="MainUserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invitations">
+            <EntityTypeMapping TypeName="MindCornersModel.Invitation">
+              <MappingFragment StoreEntitySet="Invitations">
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="StateDate" ColumnName="StateDate" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="InviatorId" ColumnName="InviatorId" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="MindCornersModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Posts_GetForList" FunctionName="MindCornersModel.Store.Posts_GetForList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MindCornersModel.Posts_GetForList_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CircleId" ColumnName="CircleId" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="UserCreatorFullName" ColumnName="UserCreatorFullName" />
+                <ScalarProperty Name="LastUpdatedUserId" ColumnName="LastUpdatedUserId" />
+                <ScalarProperty Name="UserLastUpdatedFullName" ColumnName="UserLastUpdatedFullName" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="CircleName" ColumnName="CircleName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LastAttachmentType" ColumnName="LastAttachmentType" />
+                <ScalarProperty Name="LastAttachmentId" ColumnName="LastAttachmentId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserProfileImageName" ColumnName="UserProfileImageName" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="HasReplies" ColumnName="HasReplies" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Posts_GetThemeItem" FunctionName="MindCornersModel.Store.Posts_GetThemeItem">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MindCornersModel.Posts_GetThemeItem_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="CircleId" ColumnName="CircleId" />
+                <ScalarProperty Name="CircleName" ColumnName="CircleName" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="UserCreatorFullName" ColumnName="UserCreatorFullName" />
+                <ScalarProperty Name="LastUpdatedUserId" ColumnName="LastUpdatedUserId" />
+                <ScalarProperty Name="UserLastUpdatedFullName" ColumnName="UserLastUpdatedFullName" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="TextTemplates">
+            <EntityTypeMapping TypeName="MindCornersModel.TextTemplate">
+              <MappingFragment StoreEntitySet="TextTemplates">
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostAttachments">
+            <EntityTypeMapping TypeName="MindCornersModel.PostAttachment">
+              <MappingFragment StoreEntitySet="PostAttachments">
+                <ScalarProperty Name="FileDuration" ColumnName="FileDuration" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="IsMainAttachment" ColumnName="IsMainAttachment" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Notifications_GetAllByUser" FunctionName="MindCornersModel.Store.Notifications_GetAllByUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MindCornersModel.Notifications_GetAllByUser_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+                <ScalarProperty Name="ReadDate" ColumnName="ReadDate" />
+                <ScalarProperty Name="UserCreatorFullName" ColumnName="UserCreatorFullName" />
+                <ScalarProperty Name="UserProfileImageName" ColumnName="UserProfileImageName" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

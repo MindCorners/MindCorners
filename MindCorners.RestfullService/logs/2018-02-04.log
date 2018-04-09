@@ -1,0 +1,6 @@
+2018-02-04 18:58:00.2635 ERROR System.NullReferenceException: Object reference not set to an instance of an object.
+   at MindCorners.RestfullService.Controllers.AccountController.<RegisterExternal>d__12.MoveNext() in D:\DeltaProjects\MindCorners\MindCorners.RestfullService\Controllers\AccountController.cs:line 411 System.NullReferenceException: Object reference not set to an instance of an object.
+   at MindCorners.RestfullService.Controllers.AccountController.<RegisterExternal>d__12.MoveNext() in D:\DeltaProjects\MindCorners\MindCorners.RestfullService\Controllers\AccountController.cs:line 411
+2018-02-04 19:00:08.5705 ERROR System.NullReferenceException: Object reference not set to an instance of an object.
+   at MindCorners.RestfullService.Controllers.AccountController.<RegisterExternal>d__12.MoveNext() in D:\DeltaProjects\MindCorners\MindCorners.RestfullService\Controllers\AccountController.cs:line 411 System.NullReferenceException: Object reference not set to an instance of an object.
+   at MindCorners.RestfullService.Controllers.AccountController.<RegisterExternal>d__12.MoveNext() in D:\DeltaProjects\MindCorners\MindCorners.RestfullService\Controllers\AccountController.cs:line 411

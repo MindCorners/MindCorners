@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             x:Class="MindCorners.Pages.PictureTakeTest" BackgroundColor="Black"
+             NavigationPage.HasNavigationBar="false">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid  VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" Padding="15" ColumnSpacing="10" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="backArrow.png"  Grid.Column ="0" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Aspect="AspectFill">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackButtonClick"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <StackLayout  Grid.Column ="2" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Orientation="Horizontal" Spacing="20">
+                <Image Source="magnifyingGlass.png" VerticalOptions="CenterAndExpand" HorizontalOptions="End" Aspect="AspectFill" x:Name="SearchButton" >
+
+                </Image>
+            </StackLayout>
+        </Grid>
+        <Grid Grid.Row="1" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" Padding="15" ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource ImageButton}" Image="rotateCamera.png" Grid.Column="0"/>
+            <Button Style="{StaticResource ImageButton}" Image="takePicture.png" Grid.Column="1"/>
+            <Button Style="{StaticResource ImageButton}" Image="rotateCamera.png" Grid.Column="2"/>
+        </Grid>
+        
+    </Grid>
+    
+</ContentPage>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             xmlns:promptTemplates="clr-namespace:MindCorners.Pages.PromptTemplates;assembly=MindCorners"
+             x:Class="MindCorners.CustomControls.ChatItemTemplates.TextTemplate">
+    <customControls:CustomContentView  Style="{StaticResource ReplyChatItemMainFrame}">
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <promptTemplates:ItemHeader Grid.Row="0" BindingContext="{Binding .}" />
+            <customControls:CustomContentView  Grid.Row="1" CornerRadius="21" BorderColor="#DFE9FA" BorderWidth="3" Padding="8" BackgroundColor="#FFF" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Label Text="{Binding  MainAttachment.Text}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" TextColor="#283956" FontSize="16" 
+            VerticalTextAlignment="Center" HorizontalTextAlignment="Center" LineBreakMode="WordWrap" />
+            </customControls:CustomContentView>
+
+            <Button Grid.Row="2" IsVisible="{Binding CanSendTellMeMore}" Image="tellMeMore.png" Text="Tell me more" Style="{StaticResource LightBlueButton}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Margin="0,10"
+                     Clicked="TellMeMoreButtonClick"/>
+        </Grid>
+
+        <!-- 
+            
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="5"/>
+                    </Grid.RowDefinitions>
+                    
+                </Grid>-->
+
+        <!--<customControls:GradientContentView  Grid.Row="2" CornerRadius="21"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" StartColor="#DFE9FA" EndColor="#DFE9FA" Padding="3">
+                    <customControls:GradientContentView  CornerRadius="21"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" StartColor="White" EndColor="White" Padding="10">
+                    <Label Text="{Binding  MainAttachment.Text}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" TextColor="#283956" FontSize="16" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  MinimumHeightRequest="100"></Label>
+                    </customControls:GradientContentView>
+                </customControls:GradientContentView>-->
+        <!--<Frame Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" HasShadow="False"></Frame>-->
+        <!--<Label Text="{Binding Title}" HorizontalOptions="Start"></Label>-->
+
+    </customControls:CustomContentView>
+</ViewCell>

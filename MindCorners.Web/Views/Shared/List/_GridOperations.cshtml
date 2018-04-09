@@ -1,0 +1,28 @@
+﻿@using MindCorners.Web.Code.Helpers
+@model MindCorners.Web.Models.ListControlModel
+<div>
+    @if (Model.CanAdd)
+    {
+        <a href="@Url.Action("Create")" class=" btn btn-success">Create</a>
+    }
+    @if (Model.CanEdit)
+    {
+        <label>
+            {{if id !='00000000-0000-0000-0000-000000000000' && id != null}}
+            @Html.DecodedActionLink("Edit ", "Edit", new RouteValueDictionary { { "id", "${id}" } }, new Dictionary<string, object> { { "id", "applicationEdit" }, { "class", " btn btn-warning" } })
+            {{else}}
+            <a class="btn btn-warning" disabled href="javascript:void(0);">Edit</a>
+            {{/if}}
+        </label>
+    }
+    @if (Model.CanDelete)
+    {
+        <label>
+            {{if id !='00000000-0000-0000-0000-000000000000' && id != null}}
+            @Html.DecodedActionLink("Delete ", "Delete", new RouteValueDictionary { { "id", "${id}" } }, new Dictionary<string, object> { { "id", "applicationDelete" }, { "class", " btn btn-danger" }, { "onclick", " if(confirm('Are you shure you want to delete this item?')){return true;}else{return false;}" } })
+            {{else}}
+            <a class="btn btn-danger" disabled href="javascript:void(0);">Delete</a>
+            {{/if}}
+        </label>
+    }
+</div>

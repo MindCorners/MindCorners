@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             x:Class="MindCorners.App">
+  <Application.Resources>
+<ResourceDictionary>
+            <Color x:Key="PageHeaderBackgroundColor">#8DB0EA</Color>
+            <Color x:Key="PromptsTabSwitchBottomBorderColor">#8DB0EA</Color>
+            <Color x:Key="PromptsTabSwitchBackgroundColor">#F8F8F8</Color>
+            <Color x:Key="PromptsTabSwitchSeparatorColor">#EAE9F2</Color>
+            <Color x:Key="PromptsTabSwitchFontColor">#686489</Color>
+            <Color x:Key="ApplicationBackgoundColor">#E2E8F1</Color>
+            <Color x:Key="MainPagePromptCreatorImageBorderColor">#BECDF6</Color>
+            <Color x:Key="LoginAndRegistrationPageBackgroundColor">#5C93EF</Color>
+            <!--<Color x:Key="ChatItemAttachmentBackGroundColor">Red</Color>-->
+            <Color x:Key="ChatItemAttachmentBackGroundColor">#F9FAFC</Color>
+            <Style TargetType="Label" x:Key="BlueFiresSampleLabel">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Blue Fires Sample</OnPlatform.iOS>
+                            <OnPlatform.Android>bluefires_sample.ttf#Blue Fires Sample</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                    </Setter>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Lato-Regular</OnPlatform.iOS>
+                            <OnPlatform.Android>Lato-Regular.ttf#Lato-Regular</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                    </Setter>
+            </Style>
+            <Style TargetType="Label" x:Key="HeaderInnerPageTitle">
+                <Setter Property="TextColor" Value="#FFFFFF"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Lato-Black</OnPlatform.iOS>
+                            <OnPlatform.Android>Lato-Black.ttf#Lato-Black</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="Label" x:Key="LatoBlackLabel">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Lato-Black</OnPlatform.iOS>
+                            <OnPlatform.Android>Lato-Black.ttf#Lato-Black</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="Label" x:Key="LatoSemiboldLabel">
+                <Setter Property="TextColor" Value="#283956"></Setter>
+                <Setter Property="FontSize" Value="16"></Setter>
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Lato-Semibold</OnPlatform.iOS>
+                            <OnPlatform.Android>Lato-Semibold.ttf#Lato-Semibold</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="Label" x:Key="BlueTitleLabel">
+                <Setter Property="TextColor" Value="#86ACEB"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Lato-Black</OnPlatform.iOS>
+                            <OnPlatform.Android>Lato-Black.ttf#Lato-Black</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                
+            </Style>
+    
+    
+            <Style x:Key="PromptsTabSwitchLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="TextColor" Value="#686489"/>
+            </Style>
+            <Style x:Key="MainPagePromptsTitle" TargetType="Label">
+                <Setter Property="TextColor" Value="#283956"/>
+            </Style>
+    
+            <Style TargetType="Button" x:Key="RoundedButton">
+                <Setter Property="BorderRadius" Value="20"/>
+                <Setter Property="TextColor" Value="#FFF"/>
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Lato-Semibold</OnPlatform.iOS>
+                            <OnPlatform.Android>Lato-Semibold.ttf#Lato-Semibold</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+            <Style TargetType="Button" x:Key="GreenButton" BasedOn="{StaticResource RoundedButton}">
+                <Setter Property="BackgroundColor" Value="#95BB6B"/>
+            </Style>
+            <Style TargetType="Button" x:Key="LightBlueButton" BasedOn="{StaticResource RoundedButton}">
+                <Setter Property="BackgroundColor" Value="#8DB0EA"/>
+            </Style>
+            <Style TargetType="Button" x:Key="WhiteButton" BasedOn="{StaticResource RoundedButton}">
+                <Setter Property="BackgroundColor" Value="#FFF"/>
+                <Setter Property="TextColor" Value="#6598EE"/>
+            </Style>
+    <Style TargetType="Button" x:Key="RedButton" BasedOn="{StaticResource RoundedButton}">
+                <Setter Property="BackgroundColor" Value="#EF1846"/>
+            </Style>
+            <Style TargetType="Button" x:Key="GrayButton" BasedOn="{StaticResource RoundedButton}">
+                <Setter Property="BackgroundColor" Value="#A1857D95"/>
+            </Style>
+            <Style TargetType="Button" x:Key="BlueButton" BasedOn="{StaticResource RoundedButton}">
+                <Setter Property="BackgroundColor" Value="#3B589D"/>
+            </Style>
+            <Style TargetType="Button" x:Key="ImageButton">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+            <Style TargetType="Image">
+                <Setter Property="Source" Value="images.png"/>
+            </Style>
+            <Color x:Key="MainPagePromptCreatorFontColor">#FFF</Color>
+
+
+
+
+
+            <Color x:Key="entry_background">Transparent</Color>
+            <Color x:Key="entry_border">#BCB4D1</Color>
+            <Color x:Key="entry_placeholder_text">#BCB4D1</Color>
+
+            <Style TargetType="customControls:CustomEntry">
+                <Setter Property="BorderColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="#283956" />
+                <Setter Property="PlaceholderColor" Value="#D6CFE8" />
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Lato-Regular</OnPlatform.iOS>
+                            <OnPlatform.Android>Lato-Regular.ttf#Lato-Regular</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="customControls:CustomContentView" x:Key="ReplyChatItemMainFrame">
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="BackgroundColor" Value="#F9FAFC" />
+                <!--<Setter Property="BackgroundColor" Value="#F9FAFC" />-->
+                <Setter Property="Margin" Value="10,0,10,10" />
+                <Setter Property="Padding" Value="8" />
+            </Style>
+            <Style TargetType="ActivityIndicator">
+            <Setter Property="Opacity" Value="0.8" />
+                <Setter Property="Color" Value="Black" />
+                <Setter Property="BackgroundColor" Value="#E2E8F1" />                           
+            </Style>
+        </ResourceDictionary>
+    <!-- Application resource dictionary -->
+
+  </Application.Resources>
+</Application>

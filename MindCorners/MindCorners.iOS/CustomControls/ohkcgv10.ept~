@@ -1,0 +1,419 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
+
+using MindCorners.CustomControls;
+using MindCorners.Droid.CustomControl;
+using Xamarin.Forms;
+
+using System.Threading.Tasks;
+using AVFoundation;
+using CoreMedia;
+using Foundation;
+using MindCorners.iOS.CustomControl;
+
+[assembly: Dependency(typeof(AudioPlayerService))]
+namespace MindCorners.iOS.CustomControl
+{
+    public class AudioPlayerService : IAudioPlayerService
+    {
+
+
+        protected AVPlayer Player;
+        protected AVPlayerItem PlayerItem;
+        NSObject videoEndNotificationToken;
+
+        double seekSeconds = 0;
+        public Action OnFinishedPlaying { get; set; }
+        public double CurrentPosition()
+        {
+            if (Player != null)
+            {
+                CurrentPositionMiliseconds = Player.CurrentTime.Seconds * 1000;
+                return Player.CurrentTime.Seconds * 1000;
+            }
+            else
+            { return 0; }
+        }
+
+        public void Stop()
+        {
+            if (Player != null)
+            {
+                if (Player == null) return;
+                Player.Dispose();
+                Player = null;
+                IsStoped = true;
+                IsCompleted = true;
+            }
+        }
+
+        public double CurrentPositionMiliseconds { get; set; }
+        public double FileLength { get; set; }
+        public string FileUrl { get; set; }
+        public bool IsStoped { get; set; }
+        public bool IsCompleted { get; set; }
+
+        public TimeSpan GetInfo()
+        {
+            double arr;
+            if (PlayerItem == null)
+            {
+                return new TimeSpan();
+
+            }
+            arr = PlayerItem.Duration.Seconds;
+
+            return TimeSpan.FromSeconds(arr);//TimeSpan.FromMilliseconds(arr).TotalMinutes;
+
+            // PlayerItem.Duration
+            // return new TimeSpan();
+        }
+
+        public async Task SeekTo(int s, bool isStoped)
+        {
+            await seekTo(s, isStoped);
+        }
+
+        private async Task seekTo(int mseconds, bool isStoped)
+        {
+            seekSeconds = mseconds;
+
+            if (Player == null)
+            {
+                InitFile(FileUrl);
+            }
+            if (Player != null)
+            {
+                Player.Seek(CMTime.FromSeconds(mseconds, 0));
+
+                if (!isStoped)
+                {
+                    Play();
+                    IsStoped = false;
+                }
+            }
+
+
+            //_mediaPlayer.Start();
+            //var p1 = _mediaPlayer.CurrentPosition;
+            //IsStoped = true;
+            IsCompleted = false;
+        }
+        public void InitFile(string pathToAudioFile)
+        {
+            if (Player != null)
+            {
+                Stop();
+                IsStoped = true;
+                IsCompleted = true;
+            }
+
+            if (string.IsNullOrWhiteSpace(pathToAudioFile))
+            {
+                throw new Exception("No file specified to play");
+            }
+
+            using (var url = NSUrl.FromString(pathToAudioFile))
+            {
+                PlayerItem = AVPlayerItem.FromUrl(url);
+                if (Player == null)
+                {
+                    Player = new AVPlayer(PlayerItem);
+                    if (Player == null)
+                    {
+                        return;
+                    }
+                }
+                videoEndNotificationToken = NSNotificationCenter.DefaultCenter.AddObserver(AVPlayerItem.DidPlayToEndTimeNotification, VideoDidFinishPlaying, PlayerItem);
+            }
+        }
+
+
+        public AudioPlayerService()
+        {
+        }
+
+        public async void Play(string pathToAudioFile)
+        {
+            InitFile(pathToAudioFile);
+            AVAudioSession.SharedInstance().SetCategory(AVAudioSessionCategory.Playback);
+            Play();
+            IsStoped = false;
+        }
+
+        private void VideoDidFinishPlaying(NSNotification obj)
+        {
+            OnFinishedPlaying?.Invoke();
+            Console.WriteLine("Video Finished, will now restart");
+            Player.Seek(new CMTime(0, 1));
+            Stop();
+        }
+
+        public void Pause()
+        {
+            Player?.Pause();
+            IsStoped = true;
+            IsCompleted = false;
+        }
+
+        public async void Play()
+        {
+            if (Player != null)
+            {
+                do
+                {
+                    await Task.Delay(5);
+                } while (Player.Status != AVPlayerStatus.ReadyToPlay);
+
+
+                Player?.Play();
+            }
+
+            IsStoped = false;
+        }
+
+
+
+
+
+        /*
+        protected string FileName = string.Empty;
+        protected AVPlayer Player;
+        protected AVPlayerItem PlayerItem;
+        public Action OnFinishedPlaying { get; set; }
+
+        public bool IsPlaying { get; private set; }
+
+        public void Play(string pathToAudioFile)
+        {
+            //throw new NotImplementedException();
+
+            FileName = pathToAudioFile;
+
+            QueueFile();
+
+            Play();
+        }
+
+        public async void Play()
+        {
+            do
+            {
+                await Task.Delay(5);
+            } while (Player.Status != AVPlayerStatus.ReadyToPlay);
+
+            AVAudioSession.SharedInstance().SetCategory(AVAudioSessionCategory.Playback);
+            Player.Play();
+            IsPlaying = true;
+
+
+            IsStoped = false;
+
+        }
+
+        public void Pause()
+        {
+            IsPlaying = false;
+            Player.Pause();
+
+
+            IsStoped = true;
+            IsCompleted = false;
+        }
+
+        public void Stop()
+        {
+            IsPlaying = false;
+            if (Player == null) return;
+            Player.Dispose();
+            Player = null;
+
+            IsStoped = true;
+            IsCompleted = true;
+        }
+
+        public Action OnFinishedPlaying { get; set; }
+        public double CurrentPosition()
+        {
+            if (Player == null)
+            {
+                return 0;
+            }
+            return Player.CurrentTime.Seconds * 1000;
+            //throw new NotImplementedException();
+        }
+
+        public double CurrentPositionMiliseconds { get; set; }
+        public double FileLength { get; set; }
+        public TimeSpan GetInfo()
+        {
+            return new TimeSpan();
+            //return Player.
+            //throw new NotImplementedException();
+        }
+
+        public Task SeekTo(int s, bool isStoped)
+        {
+            return null;
+            //Player.Seek(CMTime.FromSeconds(s,0), OnFinishedPlaying);
+            //throw new NotImplementedException();
+        }
+
+
+        public bool IsStoped { get; set; }
+        public bool IsCompleted { get; set; }
+        public string FileUrl { get; set; }
+
+        private void QueueFile()
+        {
+            if (string.IsNullOrWhiteSpace(FileName))
+            {
+                throw new Exception("No file specified to play");
+            }
+
+            using (var url = NSUrl.FromString(FileName))
+            {
+                AVAsset asset = AVAsset.FromUrl(NSUrl.FromFilename("audio.mp3"));
+                //var testURL = NSUrl.FromString("")
+                var testURL = NSUrl.FromString("https://s3.amazonaws.com/kargopolov/kukushka.mp3");
+                PlayerItem = AVPlayerItem.FromUrl(testURL);
+                //	PlayerItem =new AVPlayerItem(asset);
+
+                // if Player is null, we're creating a new instance and seeking to the spot required
+                // otherwise we simply resume from where we left off.
+                if (Player == null)
+                {
+                    Player = new AVPlayer(PlayerItem);
+                    //Player = AVPlayer.FromPlayerItem (playerItem);
+                    Player.Volume = 1;
+                    //Player = AVPlayer.FromUrl(url);
+                    if (Player == null)
+                    {
+                        // todo: what should we do if the file doesn't exist?
+                        return;
+                    }
+                }
+            }
+        }
+        */
+
+        /*
+
+     private AVAudioPlayer _audioPlayer = null;
+     public Action OnFinishedPlaying { get; set; }
+     public double CurrentPosition()
+     {
+         if (_audioPlayer != null)
+         {
+             CurrentPositionMiliseconds = _audioPlayer.CurrentTime;
+             return _audioPlayer.CurrentTime;
+         }
+         else
+         { return 0; }
+     }
+
+     public void Stop()
+     {
+         if (_audioPlayer != null)
+         {   
+             _audioPlayer.Stop();
+             _audioPlayer.FinishedPlaying -= Player_FinishedPlaying;
+
+             IsStoped = true;
+             IsCompleted = true;
+         }
+     }
+
+     public double CurrentPositionMiliseconds { get; set; }
+     public double FileLength { get; set; }
+     public string FileUrl { get; set; }
+     public bool IsStoped { get; set; }
+     public bool IsCompleted { get; set; }
+
+     public TimeSpan GetInfo()
+     {
+         double arr;
+         if (_audioPlayer == null)
+         {
+             _audioPlayer = AVAudioPlayer.FromUrl(NSUrl.FromFilename(FileUrl));
+
+         }
+         arr = _audioPlayer.Duration;
+
+         return TimeSpan.FromMilliseconds(arr);//TimeSpan.FromMilliseconds(arr).TotalMinutes;
+     }
+
+     public async Task SeekTo(int s, bool isStoped)
+     {
+         await seekTo(s, isStoped);
+     }
+
+     private async Task seekTo(int mseconds, bool isStoped)
+     {
+         if (_audioPlayer == null)
+         {
+             _audioPlayer = AVAudioPlayer.FromUrl(NSUrl.FromFilename(FileUrl));
+         }
+
+         _audioPlayer.PlayAtTime(mseconds);
+
+         if (!isStoped)
+         {
+             _audioPlayer.Play();
+             IsStoped = false;
+         }
+
+         //_mediaPlayer.Start();
+         //var p1 = _mediaPlayer.CurrentPosition;
+         //IsStoped = true;
+         IsCompleted = false;
+     }
+     public AudioPlayerService()
+     {
+     }
+
+     public void Play(string pathToAudioFile)
+     {  
+         var fullPath = pathToAudioFile;
+
+         // Check if _audioPlayer is currently playing
+         if (_audioPlayer != null)
+         {
+             _audioPlayer.FinishedPlaying -= Player_FinishedPlaying;
+             _audioPlayer.Stop();
+             IsStoped = true;
+             IsCompleted = true;
+         }
+
+         string localUrl = pathToAudioFile;
+         _audioPlayer = AVAudioPlayer.FromUrl(NSUrl.FromFilename(localUrl));
+         _audioPlayer.FinishedPlaying += Player_FinishedPlaying;
+         _audioPlayer.Play();
+         IsStoped = false;
+     }
+     void Player_FinishedPlaying(object sender, EventArgs e)
+     {
+         OnFinishedPlaying?.Invoke();
+         IsStoped = true;
+         IsCompleted = true;
+     }
+
+     public void Pause()
+     {
+         _audioPlayer?.Pause();
+         IsStoped = true;
+         IsCompleted = false;
+     }
+
+     public void Play()
+     {
+         _audioPlayer?.Play();
+         IsStoped = false;
+     }
+
+    */
+    }
+}

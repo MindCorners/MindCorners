@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MindCorners.Pages.UserControls.PromptsTab"
+       RowSpacing="0" ColumnSpacing="0"  VerticalOptions="FillAndExpand"  BackgroundColor="{StaticResource PromptsTabSwitchBackgroundColor}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3"/>
+        </Grid.RowDefinitions>
+        <Label Text="Latest"  HorizontalOptions="FillAndExpand" Margin="10" VerticalOptions="FillAndExpand" Grid.Column="0" Grid.Row="0" BackgroundColor="Transparent" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Style="{StaticResource PromptsTabSwitchLabel}" HeightRequest="40">
+        <Label.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding OpenLatestCommand}"/>
+        </Label.GestureRecognizers>
+            
+    </Label>
+        <BoxView BackgroundColor="{StaticResource PromptsTabSwitchBottomBorderColor}" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="0" x:Name="ActiveTabBoxView"   Grid.Row="1" />
+        <BoxView BackgroundColor="{StaticResource PromptsTabSwitchSeparatorColor}" WidthRequest="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="1"   Grid.Row="0" Grid.RowSpan="2"/>
+        <Label x:Name="BtnHistory" Text="History" Style="{StaticResource PromptsTabSwitchLabel}"  Margin="10"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Column="2"  Grid.Row="0" Grid.RowSpan="2" HeightRequest="40">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OpenArchiveCommand}"/>
+            </Label.GestureRecognizers>
+        </Label>
+    </Grid>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             xmlns:promptTemplates="clr-namespace:MindCorners.Pages.PromptTemplates;assembly=MindCorners"
+             x:Class="MindCorners.CustomControls.ChatItemTemplates.TellMeMoreTemplate">
+    <customControls:CustomContentView  Style="{StaticResource ReplyChatItemMainFrame}">
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <promptTemplates:ItemHeader Grid.Row="0" BindingContext="{Binding .}" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" ProfileImageSize="25"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image Source="tellMeMoreBlue.png" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFit"/>
+                <Label Text="Tell me more:" Grid.Column="1"  TextColor="#9B9B9C"/>
+            </Grid>
+            <Label Grid.Row="2" Text="{Binding  MainAttachment.Text}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" TextColor="#283956" FontSize="16" 
+            VerticalTextAlignment="Center" HorizontalTextAlignment="Center" LineBreakMode="WordWrap" />
+            
+        </Grid>
+    </customControls:CustomContentView>
+</ViewCell>

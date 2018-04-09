@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b96e7872328841a2bd564a4991ef22d3" Name="Diagram1">
+        <EntityTypeShape EntityType="MindCornersModel.Circle" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MindCornersModel.Organization" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MindCornersModel.Post" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MindCornersModel.CircleUser" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="MindCornersModel.FK_CircleUsers_Circles" ManuallyRouted="false" />
+        <AssociationConnector Association="MindCornersModel.FK_Posts_Circles" ManuallyRouted="false" />
+        <AssociationConnector Association="MindCornersModel.FK_Posts_Posts" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MindCornersModel.UserProfile" Width="1.5" PointX="10.5" PointY="1" />
+        <EntityTypeShape EntityType="MindCornersModel.GridState" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="MindCornersModel.FK_GridState_UserProfiles" />
+        <AssociationConnector Association="MindCornersModel.FK_UserProfiles_Organizations" />
+        <EntityTypeShape EntityType="MindCornersModel.MessageTemplate" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MindCornersModel.NotificationRecipient" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="MindCornersModel.Notification" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="MindCornersModel.PostTemplate" Width="1.5" PointX="7.75" PointY="9.75" />
+        <EntityTypeShape EntityType="MindCornersModel.Config" Width="1.5" PointX="10.375" PointY="6.75" />
+        <EntityTypeShape EntityType="MindCornersModel.UserContact" Width="1.5" PointX="10.375" PointY="10.75" />
+        <EntityTypeShape EntityType="MindCornersModel.Invitation" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="MindCornersModel.AspNetUser" Width="1.5" PointX="12.375" PointY="7" />
+        <AssociationConnector Association="MindCornersModel.FK_dbo_UserProfiles_dbo_AspNetUsers_User_Id" />
+        <EntityTypeShape EntityType="MindCornersModel.TextTemplate" Width="1.5" PointX="12.375" PointY="11.75" />
+        <EntityTypeShape EntityType="MindCornersModel.PostAttachment" Width="1.5" PointX="6" PointY="4.5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,109 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:MindCorners.Behaviors;assembly=MindCorners"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             x:Class="MindCorners.Pages.Login"
+             Title="Login"
+             NavigationPage.HasNavigationBar="false">
+    <!--<ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                iOS="20, 40, 20, 20"
+                Android="20, 20, 20, 20"
+                WinPhone="20, 20, 20, 20" />
+    </ContentPage.Padding>-->
+   
+    <ContentPage.Content>
+        <customControls:GradientContentView  StartColor="#8DB0EA" EndColor="#5C93EF"  Orientation="Horizontal" StartPointX="1.03" StartPointY="0" EndPointX="0.17" EndPointY="0.2">
+            <customControls:GradientContentView.Padding>
+                <OnPlatform x:TypeArguments="Thickness"
+                iOS="0, 20, 0, 0"
+                Android="0"
+                />
+            </customControls:GradientContentView.Padding>
+            
+            <Grid BackgroundColor="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Text="Mind Corners" FontSize="32" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" TextColor="#FFF" Margin="10,20,10,0" Style="{StaticResource BlueFiresSampleLabel}"/>
+                <customControls:CustomFrame  CornerRadius="9" Grid.Row="1" Margin="10,10,10,20" ShadowColor="#7434384A" ShadowRadius="10" ShadowOffsetY="10" HasShadow="True">
+                    <Grid  BackgroundColor="#FFF">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="FillAndExpand" RowSpacing="8" Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="1"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="1"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <customControls:CustomEntry x:Name="TxtEmail"  Keyboard="Email"  Placeholder="User Name"  HorizontalOptions="FillAndExpand" BorderColor="Transparent">
+                                <customControls:CustomEntry.Behaviors>
+                                    <behaviors:EmailValidatorBehavior x:Name="emailValid" />
+                                    <behaviors:RequiredValidatorBehavior  x:Name="requiredEmail"/>
+                                </customControls:CustomEntry.Behaviors>
+                            </customControls:CustomEntry>
+                            <BoxView Color="#D6CFE8" HeightRequest="1" VerticalOptions="End" Grid.Row="1" Opacity="0.9"/>
+                            <!--<Entry x:Name="TxtEmail"  Keyboard="Email"  Placeholder="User Name"  HorizontalOptions="FillAndExpand"  Text="nchogovadze@directsolutions.ge">
+                                <Entry.Behaviors>
+                                    <behaviors:EmailValidatorBehavior x:Name="emailValid" />
+                                    <behaviors:RequiredValidatorBehavior  x:Name="requiredEmail"/>
+                                </Entry.Behaviors>
+                            </Entry>-->
+                            <!-- Style="{StaticResource CustomEntry}" StackLayout Padding="0,0,0,1" BackgroundColor="{StaticResource entry_border}"></StackLayout>-->
+                            <customControls:CustomEntry Grid.Row="2" x:Name="TxtPassword" Placeholder="Password" IsPassword="True" HorizontalOptions="FillAndExpand" BorderColor="Transparent" Margin="0,16,0,0" ></customControls:CustomEntry>
+                            <BoxView Color="#D6CFE8" HeightRequest="1" VerticalOptions="End" Grid.Row="3" Opacity="0.9"/>
+                            <Button Grid.Row="4" x:Name="BtnLogin" Text="LOG IN"  HorizontalOptions="FillAndExpand" Clicked="OnLoginClick" Style="{StaticResource GreenButton}" Margin="0,16"/>
+                            <Label Grid.Row="5" Text="Or" HorizontalOptions="CenterAndExpand" TextColor="#D0CEE6" FontSize="30" VerticalOptions="CenterAndExpand"  Style="{StaticResource BlueFiresSampleLabel}" VerticalTextAlignment="Center" Margin="0,5,0,0" />
+                            <Button Grid.Row="6" x:Name="BtnLoginWithFacebook" Text="Sign In with Facebook" HorizontalOptions="FillAndExpand" Clicked="OnFacebookLoginClick" Style="{StaticResource BlueButton}"  Margin="0,16"/>
+                            
+                            
+                            
+                            
+                            
+                            </Grid>
+                           
+
+                            
+                            <!--<Button x:Name="BtnLoginWithGmail" Text="Sign In with Gmail"  HorizontalOptions="FillAndExpand" Clicked="OnGmailLoginClick" /> <StackLayout ></StackLayout>
+-->
+                        
+                        <Label Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span Text="Don't Have an Account?" ForegroundColor="#484663" FontSize="16" />
+                                        <Span Text=" Sign Up!" ForegroundColor="#95BB6B" FontSize="16" />
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnRegisterClick"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <!--<Button Grid.Row="2"  Grid.Column="1" x:Name="BtnRegister" Text="Don't Have an Account? Sign Up!"  HorizontalOptions="FillAndExpand" Clicked="OnRegisterClick"></Button>-->
+
+                    </Grid>
+                </customControls:CustomFrame>
+                 <ActivityIndicator 
+             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                           IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}" Grid.Row="0" Grid.RowSpan="2"/>
+
+            </Grid>
+
+        </customControls:GradientContentView>
+    </ContentPage.Content>
+</ContentPage>

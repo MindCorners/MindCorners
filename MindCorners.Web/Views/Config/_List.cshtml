@@ -1,0 +1,142 @@
+﻿@using System.Web.UI.WebControls
+@using DevExpress.Utils
+@using DevExpress.Web
+@using DevExpress.Web.Internal
+@using DevExpress.Web.Mvc
+@using DevExpress.Web.Mvc.UI
+@using MindCorners.Common.Code
+@using MindCorners.Common.Code.Enums
+@using MindCorners.Web.Code
+
+@functions
+{
+    protected Dictionary<int, ListState<ListFilter>> ListStates
+    {
+        get { return Session["ListStates_" + (int)ModuleName.MessageTemplate] as Dictionary<int, ListState<ListFilter>> ?? new Dictionary<int, ListState<ListFilter>>(); }
+        set { Session["ListStates_" + (int)ModuleName.MessageTemplate] = value; }
+    }
+
+    protected ListState<ListFilter> ListState
+    {
+        get
+        {
+            if (ListStates != null && ListStates.ContainsKey((int)ModuleName.MessageTemplate))
+            {
+                return ListStates[(int)ModuleName.MessageTemplate];
+            }
+            return null;
+
+            // return ListStates[(int) ModuleName.TravelDocument];
+        }
+        set
+        {
+            var moduleName = (int)ModuleName.MessageTemplate;
+            var listStates = ListStates;
+            if (listStates != null)
+            {
+                listStates.AddOrReplace(moduleName, value);
+                ListStates = listStates;
+
+            }
+        }
+    }
+}
+
+@Html.DevExpress().GridView(
+    settings =>
+    {
+        settings.SettingsBehavior.AutoFilterRowInputDelay = 12000;
+        settings.Name = "gvConfigs";
+        settings.KeyFieldName = "Id";
+        var showFilter = ListState == null || ListState.ShowFilter;
+
+        settings.CallbackRouteValues = new { Controller = "Config", Action = "AdvancedCustomBindingPartial", showFilter, gridViewName = "gvConfigs", listPartial = "_List" };
+        settings.CustomBindingRouteValuesCollection.Add(GridViewOperationType.Paging, new { Controller = "Config", Action = "AdvancedCustomBindingPagingAction",  gridViewName = "gvConfigs", listPartial = "_List" });
+        settings.CustomBindingRouteValuesCollection.Add(GridViewOperationType.Filtering, new { Controller = "Config", Action = "AdvancedCustomBindingFilteringAction",  gridViewName = "gvConfigs", listPartial = "_List" });
+        settings.CustomBindingRouteValuesCollection.Add(GridViewOperationType.Sorting, new { Controller = "Config", Action = "AdvancedCustomBindingSortingAction",  gridViewName = "gvConfigs", listPartial = "_List" });
+
+        settings.Width = Unit.Percentage(100);
+
+
+        settings.Settings.ShowFilterRow = showFilter;
+        settings.Settings.ShowFilterRowMenu = showFilter;
+        settings.SettingsPager.PageSize = 20;
+        settings.SettingsPager.Position = PagerPosition.Bottom;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        settings.SettingsBehavior.AllowGroup = false;
+        settings.SettingsBehavior.AllowDragDrop = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Styles.AlternatingRow.Enabled = DefaultBoolean.True;
+
+        //Customization window
+        settings.SettingsCustomizationWindow.Enabled = true;
+        settings.SettingsCustomizationWindow.PopupHorizontalAlign = PopupHorizontalAlign.LeftSides;
+        settings.SettingsCustomizationWindow.PopupVerticalAlign = PopupVerticalAlign.TopSides;
+
+        settings.SettingsPager.FirstPageButton.Visible = true;
+        settings.SettingsPager.LastPageButton.Visible = true;
+
+        //Client Side Events
+        settings.ClientSideEvents.FocusedRowChanged = "DevexpressHelper.Grid('#gridOperationMenu', '#gridOperationLinksTemplate', '#applicationEdit').OnGridFocusedRowChanged";
+        settings.ClientSideEvents.RowDblClick = "DevexpressHelper.Grid('#gridOperationMenu', '#gridOperationLinksTemplate', '#applicationEdit').OnGridDoubleClick";
+        settings.ClientSideEvents.EndCallback = "DevexpressHelper.Grid('#gridOperationMenu', '#gridOperationLinksTemplate', '#applicationEdit').OnGridEndCallback";
+        settings.ClientSideEvents.Init = "DevexpressHelper.Grid('#gridOperationMenu', '#gridOperationLinksTemplate', '#applicationEdit').OnGridInit";
+        settings.ClientSideEvents.ColumnStartDragging = "DevexpressHelper.Grid('#gridOperationMenu', '#gridOperationLinksTemplate', '#applicationEdit').OnGridColumnStartDragging";
+        settings.ClientSideEvents.BeginCallback = "DevexpressHelper.Grid('#gridOperationMenu', '#gridOperationLinksTemplate', '#applicationEdit').OnBeginCallback";
+
+        settings.Columns.Add(column =>
+        {
+            column.Caption = "Friendly Name";
+            column.FieldName = "FriendlyName";
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+        
+        //Grid
+        settings.Columns.Add(column =>
+        {
+            column.Caption = "Type";
+            column.FieldName = "Type";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var properties = (ComboBoxProperties)column.PropertiesEdit;
+            properties.DataSource = (Dictionary<int, string>)ViewBag.Types;
+            properties.ValueField = "Key";
+            properties.TextField = "Value";
+            properties.DropDownStyle = DropDownStyle.DropDown;
+            properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        });
+
+        settings.ClientLayout = (s, e) =>
+        {
+            if (e.LayoutMode == ClientLayoutMode.Loading)
+            {
+                if (ListState != null && ListState.LayoutData!= null)
+                    e.LayoutData = ListState.LayoutData;
+            }
+            else
+            {
+                var listState = ListState;
+                if (listState != null)
+                {
+                    listState.LayoutData= e.LayoutData;
+                    ListState = listState;
+                }
+            }
+        };
+
+        // Events
+        settings.PreRender = (s, e) =>
+        {
+            if (ViewData["VisibleID"] == null) return;
+
+            var grid = (ASPxGridView)s;
+            grid.MakeRowVisible(ViewData["VisibleID"]);
+        };
+
+        settings.CustomJSProperties = (sender, e) =>
+        {
+            var grid = (MVCxGridView)sender;
+            e.Properties["cpGridRowCount"] = grid.VisibleRowCount;
+            e.Properties["cpGridColumnCount"] = grid.VisibleColumns.Count;
+        };
+
+    }).BindToCustomData(Model).GetHtml()

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="X5k-f2-b5h">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="gAE-YM-kbH">
+            <objects>
+                <viewController id="X5k-f2-b5h" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Y8P-hJ-Z43"/>
+                        <viewControllerLayoutGuide type="bottom" id="9ZL-r4-8FZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yd7-JS-zBw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="MindCornersLaunchScreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20392156862745098" green="0.59607843137254901" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint id="56" firstItem="23" firstAttribute="top" secondItem="yd7-JS-zBw" secondAttribute="top"/>
+                            <constraint id="57" firstItem="23" firstAttribute="trailing" secondItem="yd7-JS-zBw" secondAttribute="trailing"/>
+                            <constraint id="58" firstItem="23" firstAttribute="leading" secondItem="yd7-JS-zBw" secondAttribute="leading"/>
+                            <constraint id="59" firstItem="23" firstAttribute="bottom" secondItem="yd7-JS-zBw" secondAttribute="bottom"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XAI-xm-WK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="346" y="335"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Icon-60.png" width="60" height="60"/>
+        <image name="alertError.png" width="81" height="81"/>
+        <image name="videoStartRecording.png" width="66" height="66"/>
+        <image name="videoStopRecording.png" width="66" height="66"/>
+        <image name="tellMeMore.png" width="21" height="21"/>
+        <image name="tellMeMoreBlue.png" width="23" height="23"/>
+        <image name="Icon-72.png" width="72" height="72"/>
+        <image name="Icon-76.png" width="76" height="76"/>
+        <image name="Icon-83.5.png" width="83.5" height="83.5"/>
+        <image name="Icon-Notification.png" width="20" height="20"/>
+        <image name="Icon-Small-40.png" width="40" height="40"/>
+        <image name="Icon-Small-50.png" width="50" height="50"/>
+        <image name="Icon-Small.png" width="29" height="29"/>
+        <image name="Icon.png" width="57" height="57"/>
+        <image name="group_Inactive.png" width="44" height="30"/>
+        <image name="homeScreen_Active.png" width="45" height="33"/>
+        <image name="leftArrow.png" width="10" height="17"/>
+        <image name="checked.png" width="26" height="26"/>
+        <image name="unchecked.png" width="26" height="26"/>
+        <image name="video.png" width="23" height="15"/>
+        <image name="audio.png" width="15" height="22"/>
+        <image name="picture.png" width="18" height="18"/>
+        <image name="text.png" width="19" height="20"/>
+        <image name="profilePlaceholder.png" width="79" height="79"/>
+        <image name="close.png" width="21" height="21"/>
+        <image name="images.png" width="275" height="183"/>
+        <image name="videoThumbnailIcon.png" width="66" height="66"/>
+        <image name="audioPause.png" width="40" height="40"/>
+        <image name="audioPlay.png" width="40" height="40"/>
+        <image name="audioPrompt.png" width="61" height="60"/>
+        <image name="backArrow.png" width="14" height="25"/>
+        <image name="chat.png" width="55" height="55"/>
+        <image name="checkmark.png" width="48" height="48"/>
+        <image name="disabled_audioPrompt.png" width="61" height="60"/>
+        <image name="disabled_imagePrompt.png" width="61" height="60"/>
+        <image name="disabled_textPrompt.png" width="61" height="60"/>
+        <image name="disabled_videoPrompt.png" width="61" height="60"/>
+        <image name="edit.png" width="38" height="35"/>
+        <image name="group_Active.png" width="44" height="30"/>
+        <image name="groupIcon.png" width="46" height="46"/>
+        <image name="homeScreen_Inactive.png" width="45" height="33"/>
+        <image name="imagePrompt.png" width="61" height="60"/>
+        <image name="magnifyingGlass.png" width="29" height="29"/>
+        <image name="menu.png" width="21" height="18"/>
+        <image name="microphone.png" width="33" height="57"/>
+        <image name="MindCorners.png" width="129" height="27"/>
+        <image name="newPrompt.png" width="105" height="105"/>
+        <image name="noStories.png" width="145" height="119"/>
+        <image name="notifications.png" width="29" height="29"/>
+        <image name="play.png" width="40" height="40"/>
+        <image name="Profile.png" width="21" height="18"/>
+        <image name="replyBackground.png" width="823" height="588"/>
+        <image name="search.png" width="29" height="29"/>
+        <image name="speechBubbleWithLines.png" width="45" height="33"/>
+        <image name="textPrompt.png" width="61" height="60"/>
+        <image name="videoCamera.png" width="23" height="15"/>
+        <image name="videoPrompt.png" width="61" height="60"/>
+        <image name="rubbish-bin.png" width="17" height="22"/>
+        <image name="NoReplies.png" width="179" height="116"/>
+        <image name="magnifyingGlassSearchBar.png" width="16" height="16"/>
+        <image name="searchbarClear.png" width="22" height="22"/>
+        <image name="alertOk.png" width="81" height="81"/>
+        <image name="ProfileBackgroun.png" width="823" height="588"/>
+        <image name="rotateCamera.png" width="40" height="40"/>
+        <image name="takePicture.png" width="66" height="66"/>
+        <image name="audioTint.png" width="4" height="18"/>
+        <image name="cameraGallary.png" width="36" height="36"/>
+        <image name="flashOn.png" width="15" height="23"/>
+        <image name="audioRecordPause.png" width="110" height="109"/>
+        <image name="audioRecord.png" width="110" height="109"/>
+        <image name="MindCornersLaunchScreen.png" width="375" height="667"/>
+    </resources>
+</document>

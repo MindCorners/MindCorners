@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+      x:Class="MindCorners.UserControls.HeaderInnerPages"
+      VerticalOptions="FillAndExpand"
+                   HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource PageHeaderBackgroundColor}">
+    <Grid.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                iOS="0, 20, 0, 0"
+                Android="0"
+                />
+    </Grid.Padding>
+    <Grid  VerticalOptions="StartAndExpand"
+               HorizontalOptions="FillAndExpand" Padding="0,5,0,5" ColumnSpacing="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Label  Grid.Column="0" Grid.ColumnSpan="3" x:Name="PageTitleLabel" HorizontalOptions="CenterAndExpand" Style="{StaticResource HeaderInnerPageTitle}" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="TailTruncation"></Label>
+       <!--- <Image Source="backArrow.png"  Grid.Column ="0" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Aspect="AspectFill">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnBackButtonClick"/>
+            </Image.GestureRecognizers>
+        </Image>-->
+        <Button Style="{StaticResource ImageButton}" Image="backArrow.png" HorizontalOptions="Start"  Grid.Column="0" VerticalOptions="Center" Clicked="OnBackButtonClick" ></Button>
+                    <!--<Image Source="backArrow.png" HorizontalOptions="Start" Aspect="AspectFit" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>-->
+        <StackLayout  Grid.Column ="2" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Orientation="Horizontal">
+            <Button Style="{StaticResource ImageButton}" Command="{Binding ShowSearchBarButtonClickedCommand}"  Image="magnifyingGlass.png" VerticalOptions="CenterAndExpand" HorizontalOptions="End" x:Name="SearchButton" />
+            <Button BackgroundColor="Transparent" HeightRequest="20" FontSize="18" TextColor="#FFF" x:Name="SendButton" VerticalOptions="Center"/>
+        </StackLayout>
+    </Grid>
+</Grid>

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:MindCorners.Helpers.Converters;assembly=MindCorners"
+             xmlns:userControls="clr-namespace:MindCorners.UserControls;assembly=MindCorners"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             x:Class="MindCorners.Pages.NotificationsList"
+             NavigationPage.HasNavigationBar="false" BackgroundColor="White">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
+            <converters:CountToVisibilityReverseConverter x:Key="CountToVisibilityReverseConverter"/>
+            <converters:BooleanToReverseConverter x:Key="BooleanToReverseConverter"/>
+            <converters:ListViewRowCountToHeightConverter x:Key="ListViewRowCountToHeightConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowSpacing="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <userControls:HeaderInnerPages PageTitle="NOTIFICATIONS" ShowSearchButton="True" HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand" />
+            <!--<userControls:Header PageTitle="NOTIFICATIONS"  ShowNotifications="False" ShowLogo="False" HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand" />-->
+            <Grid RowSpacing="0"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="#E2E8F1" Grid.Row="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ScrollView  Grid.Row="0" IsVisible="{Binding Notifications.Count, Converter={StaticResource CountToVisibilityConverter}}">
+                    <customControls:InfiniteListView 
+                        x:Name="NotificationsListView" 
+                        ItemsSource="{Binding Notifications}"
+                        SelectedItem="{Binding SelectedItem}"
+                        LoadMoreCommand="{Binding LoadMoreCommand}"
+                        SeparatorVisibility="None"
+                        HasUnevenRows="True"
+                        VerticalOptions="FillAndExpand"
+                        RowHeight="100"
+                        HeightRequest="{Binding Path=Notifications.Count, ConverterParameter=100, Converter={StaticResource ListViewRowCountToHeightConverter}}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" MinimumHeightRequest="40" BackgroundColor="#FFF">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer  Command="{Binding Path=BindingContext.GoToResourceCommand, Source={x:Reference Name=NotificationsListView}}" CommandParameter="{Binding Id}"/>
+                                        </Grid.GestureRecognizers>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition Height="1"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="15" ColumnSpacing="10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80"/>
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <abstractions:CircleImage 
+                                                Aspect="AspectFill" 
+                                                Source="{Binding UserProfileImageName}"
+                                                VerticalOptions="Center" 
+                                                HorizontalOptions="Center" 
+                                                WidthRequest="40"  
+                                                HeightRequest="40" 
+                                                BorderColor="#7590D9" 
+                                                BorderThickness="3" 
+                                                Grid.Column="0">
+                                            </abstractions:CircleImage>
+                                            <Grid Grid.Column="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Label Text="{Binding UserCreatorFullName}" Style="{StaticResource LatoSemiboldLabel}"  LineBreakMode="TailTruncation"  TextColor="#283956" FontSize="16" Grid.Row="0"  VerticalOptions="StartAndExpand"  HorizontalOptions="StartAndExpand"/>
+                                                <Label LineBreakMode="TailTruncation" Text="{Binding Text}" TextColor="#283956"  FontSize="14" VerticalOptions="StartAndExpand" Grid.Row="1" HorizontalOptions="StartAndExpand" />
+                                            </Grid>
+                                        </Grid>
+                                        <BoxView BackgroundColor="#E1E3E8" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="1"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </customControls:InfiniteListView>
+                </ScrollView>
+                <Grid Grid.Row="0" IsVisible="{Binding Notifications.Count, Converter={StaticResource CountToVisibilityReverseConverter}}">
+                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Spacing="30">
+                        <Image HorizontalOptions="CenterAndExpand" Aspect="AspectFit" Source="noStories.png"/>
+                        <Label Text="YOU DON'T HAVE NOTIFICATIONS" HorizontalOptions="CenterAndExpand" TextColor="#ABBDDC"  FontSize="20"></Label>
+                    </StackLayout>
+                </Grid>
+                 <ActivityIndicator
+             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                           IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}" Grid.Row="0" Grid.RowSpan="2" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

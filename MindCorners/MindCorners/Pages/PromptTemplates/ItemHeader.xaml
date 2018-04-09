@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+      xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+      x:Class="MindCorners.Pages.PromptTemplates.ItemHeader" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+  <Grid.ColumnDefinitions>
+    <ColumnDefinition Width="45"/>
+    <ColumnDefinition />
+  </Grid.ColumnDefinitions>
+    <abstractions:CircleImage
+                   Aspect="AspectFill"
+                   Source="{Binding UserProfileImageName}"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="StartAndExpand"
+                   BorderColor="#EFEEFE"
+                   Grid.Column="0" BorderThickness="2" x:Name="ProfileImage" WidthRequest="40" HeightRequest="40"/>
+    <Grid Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Label Text="{Binding CreatorFullName, StringFormat='{0}:'}" FontSize="16"  VerticalOptions="CenterAndExpand"  HorizontalOptions="StartAndExpand" Grid.Column="0" LineBreakMode="TailTruncation" TextColor="#283956" />
+        <Label Text="{Binding LastUpdatedDateValue}" VerticalOptions="CenterAndExpand"  HorizontalOptions="EndAndExpand" Grid.Column="1" HorizontalTextAlignment="End" FontSize="12" TextColor="#9B9B9C"/>
+    </Grid>
+ 
+</Grid>

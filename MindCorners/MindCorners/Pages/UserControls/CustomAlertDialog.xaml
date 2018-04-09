@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="MindCorners.Pages.UserControls.CustomAlertDialog">
+<Grid>
+        <customControls:CustomContentView VerticalOptions="Center" HorizontalOptions="FillAndExpand" BackgroundColor="#FFF" CornerRadius="24" Padding="20" Margin="40">
+            <Grid RowSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image Source="alertOk.png" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFit" Grid.Row="0" x:Name="AlertImage"/>
+                <Label Text="Welcome to Xamarin Forms!" Grid.Row="1" x:Name="MessageText" TextColor="#6693DE" FontSize="15" LineBreakMode="WordWrap" HorizontalTextAlignment="Center" />
+               <StackLayout Orientation="Horizontal" Spacing="10" Grid.Row="2"  VerticalOptions="End"  HorizontalOptions="FillAndExpand" Padding="20,0">
+                	<Button Style="{StaticResource GreenButton}"  Text="OK" HorizontalOptions="FillAndExpand" Clicked="Button_OnClicked"  x:Name="OkButton"/>
+                	<Button Style="{StaticResource RedButton}"  Text="Cancel" HorizontalOptions="FillAndExpand" Clicked="ButtonCancle_OnClicked"  x:Name="CancelButton" IsVisible="False"/>
+              </StackLayout>
+            </Grid>
+        </customControls:CustomContentView>
+
+    </Grid>
+    
+            
+        
+   
+</pages:PopupPage>

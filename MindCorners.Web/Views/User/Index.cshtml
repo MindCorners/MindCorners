@@ -1,0 +1,30 @@
+﻿@using MindCorners.Web.Models
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.Title = "Users";
+}
+<div class="divApplicationList">
+    <div class="grid-operation-menu grid-operation-menu-geo" id="gridOperationMenu">
+    </div>
+    @*<div class="grid-state-links">
+            @Html.Partial("List/UserControls/_GridStateLinks")
+        </div>*@
+    <script type="text/html" id="gridOperationLinksTemplate">
+        @Html.Raw(Html.Partial("List/_GridOperations", new ListControlModel { CanEdit = false }).ToHtmlString())
+    </script>
+</div>
+<div class="divApplicationList">
+    @Html.Action("AdvancedCustomBindingPartial", "User", new { gridViewName = "gvUsers", listPartial = "_List" })
+</div>
+<script language="javascript" type="text/javascript">
+
+    $(function () {
+        $('.module-switch-link').click(function () {
+            var self = $(this);
+            $('.module-switch-link').removeClass('module-switch-link-active');
+            self.addClass('module-switch-link-active');
+        });
+    });
+</script>
+

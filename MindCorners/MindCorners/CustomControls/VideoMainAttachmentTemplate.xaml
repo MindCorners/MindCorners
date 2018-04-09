@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             xmlns:promptTemplates="clr-namespace:MindCorners.Pages.PromptTemplates;assembly=MindCorners"
+             x:Class="MindCorners.CustomControls.ChatMainAttachment.VideoMainAttachmentTemplate">
+    <customControls:CustomFrame VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0" HasShadow="True" ShadowColor="#1D000000" ShadowOffsetY="1" ShadowRadius="2">
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  BackgroundColor="{StaticResource ChatItemAttachmentBackGroundColor}" Padding="10" >
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"
+              CommandParameter="{Binding MainAttachment}" />
+            </Grid.GestureRecognizers>
+            <Image
+          HorizontalOptions="FillAndExpand"
+          VerticalOptions="FillAndExpand"
+          Source="{Binding  MainAttachment.FileThumbnailUrl}"
+            Aspect="AspectFill"
+            HeightRequest="200">
+            </Image>
+            <Image Source="videoThumbnailIcon.png"
+               WidthRequest="50"
+               HeightRequest="50"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Aspect="AspectFit"/>
+        </Grid>
+    </customControls:CustomFrame>
+    <!--<Grid HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+            Grid.Row="1">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"
+              CommandParameter="{Binding MainAttachment}" />
+        </Grid.GestureRecognizers>
+        <Image
+          HorizontalOptions="FillAndExpand"
+          VerticalOptions="FillAndExpand"
+          Source="{Binding  MainAttachment.FileThumbnailUrl}"
+                Aspect="AspectFill"
+               Grid.Row="0"
+          Grid.RowSpan="3"
+          Grid.ColumnSpan="3"
+               Grid.Column="0" HeightRequest="300">
+        </Image>
+        <Image Source="videoThumbnailIcon.png"
+               WidthRequest="50"
+               HeightRequest="50"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Aspect="AspectFit"
+               Grid.Row="1"
+               Grid.Column="1"/>
+
+    </Grid>-->
+</ViewCell>

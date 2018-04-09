@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:MindCorners.Helpers.Converters;assembly=MindCorners"
+             x:Class="MindCorners.Pages.ProfilePhoto"
+             Title="Profile Photo"
+             NavigationPage.HasNavigationBar="false" BackgroundColor="Black">
+
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.Padding>
+            <OnPlatform x:TypeArguments="Thickness"
+                iOS="0, 20, 0, 0"
+                Android="0"
+                />
+        </Grid.Padding>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"   x:Name="ImgProfileImage" Aspect="AspectFill"  VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"/>
+        <Button  Margin="20" Text="Save photo"  x:Name="BtnSavePhoto" Clicked="BtnSavePhoto_OnClicked"  Grid.Row="1" VerticalOptions="EndAndExpand"  Style="{StaticResource GreenButton}" HorizontalOptions="FillAndExpand"></Button>
+        <ActivityIndicator
+             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                           IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}" Grid.Row="0" Grid.RowSpan="2" />
+        <Button Image="close.png" Style="{StaticResource ImageButton}" HorizontalOptions="EndAndExpand" Clicked="Button_OnClicked" Margin="10,20"  Grid.Row="0" />
+        
+        <!--<Grid Grid.Row="1" BackgroundColor="#F6F6F6" Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="#D3D1E5" Padding="1" CornerRadius="8" HasShadow="False" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Frame BackgroundColor="#FFF" Padding="10" CornerRadius="8" HasShadow="False" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Your image ..."/>
+                        <Image Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Source="{Binding ImageItemSource}"  Aspect="AspectFit"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ></Image>
+                        <Button  Grid.Column="0" Grid.Row="2" Text="Take a Photo"  Command="{Binding TakePhotoCommand}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Style="{StaticResource GrayButton}" ></Button>
+                        <Button  Grid.Column="1" Grid.Row="2" Text="Select a Photo" Command="{Binding SelectPhotoCommand}"  HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Style="{StaticResource GrayButton}" ></Button>
+                    </Grid>
+                </Frame>
+            </Frame>
+            <Button Text="Send" Command="{Binding SendPostCommand}" Grid.Row="1" VerticalOptions="EndAndExpand" IsEnabled="{Binding ImageItemSource, Converter={StaticResource NullToBooleanConverter}}"  Style="{StaticResource GreenButton}" HorizontalOptions="FillAndExpand"></Button>
+        </Grid>-->
+    </Grid>
+
+    
+    
+    <!--<ContentPage.Padding>
+    <OnPlatform x:TypeArguments="Thickness"
+                iOS="20, 40, 20, 20"
+                Android="20, 20, 20, 20"
+                WinPhone="20, 20, 20, 20" />
+  </ContentPage.Padding>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <converters:ConverterBase64ImageSource x:Key="Base64ToImageConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  
+  <ContentPage.Content>
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition Height="5*"/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <StackLayout VerticalOptions="FillAndExpand"
+                   HorizontalOptions="FillAndExpand"
+                   Orientation="Vertical"
+                   Spacing="15" Grid.Row="1">
+        <Image  x:Name="ImgProfileImage" Source="{Binding ProfileImageString}"  Aspect="AspectFit"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></Image>
+        
+      </StackLayout>
+       <Button Grid.Row="2" x:Name="BtnSavePhoto" Text="Save"  HorizontalOptions="FillAndExpand" Clicked="BtnSavePhoto_OnClicked" IsVisible="False"></Button>
+    </Grid>
+
+  </ContentPage.Content>-->
+  
+  
+</ContentPage>

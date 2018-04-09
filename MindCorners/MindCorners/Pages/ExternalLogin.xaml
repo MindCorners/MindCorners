@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MindCorners.Pages.ExternalLogin"
+	xmlns:userControls="clr-namespace:MindCorners.UserControls;assembly=MindCorners"
+               NavigationPage.HasNavigationBar="false">
+	<Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <userControls:HeaderInnerPages PageTitle="FACEBOOK LOGIN" ShowSearchButton="False" ShowSendButton="false" 
+		CanSend="false" />
+
+    <WebView  Grid.Row="1" Source="{Binding ExternalLoginUrl}" Navigated="ExternalLogin_OnNavigated" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+			</Grid>
+</ContentPage>

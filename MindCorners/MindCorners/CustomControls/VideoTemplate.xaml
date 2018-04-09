@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             xmlns:promptTemplates="clr-namespace:MindCorners.Pages.PromptTemplates;assembly=MindCorners"
+             x:Class="MindCorners.CustomControls.ChatItemTemplates.VideoTemplate">
+    <customControls:CustomContentView  Style="{StaticResource ReplyChatItemMainFrame}">
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <promptTemplates:ItemHeader Grid.Row="0" BindingContext="{Binding .}"/>
+            <Grid HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+            Grid.Row="1">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"
+              CommandParameter="{Binding MainAttachment}" />
+                </Grid.GestureRecognizers>
+                <Image
+          HorizontalOptions="FillAndExpand"
+          VerticalOptions="FillAndExpand"
+          Source="{Binding  MainAttachment.FileThumbnailUrl}"
+                Aspect="AspectFill"
+                    HeightRequest="300">
+                </Image>
+                <Image Source="videoThumbnailIcon.png"
+               WidthRequest="50"
+               HeightRequest="50"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Aspect="AspectFit"/>
+            </Grid>
+            <Button Grid.Row="2" Image="tellMeMore.png" Text="Tell me more" Style="{StaticResource LightBlueButton}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Margin="0,10"
+                     Clicked="TellMeMoreButtonClick"/>
+            <!--<Grid HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+            Grid.Row="1">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.GestureRecognizers>
+          <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"
+              CommandParameter="{Binding MainAttachment}" />
+        </Grid.GestureRecognizers>
+        <Image
+          HorizontalOptions="FillAndExpand"
+          VerticalOptions="FillAndExpand"
+          Source="{Binding  MainAttachment.FileThumbnailUrl}"
+                Aspect="AspectFit"
+               Grid.Row="0"
+               Grid.Column="0">
+        </Image>
+        <Image Source="videoThumbnailIcon.png"
+               WidthRequest="50"
+               HeightRequest="50"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Aspect="AspectFit"
+               Grid.Row="0"
+               Grid.Column="0"/>
+
+      </Grid>-->
+            <!--<Label Text="{Binding Title}" HorizontalOptions="Start"></Label>-->
+        </Grid>
+    </customControls:CustomContentView  >
+
+
+
+
+    <!--<Frame CornerRadius="8" HorizontalOptions="FillAndExpand" BackgroundColor="#F6F6F6" Margin="20">
+    <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" Padding="15,5,5,15" >
+      <Label Text="{Binding Title}" HorizontalOptions="Start"></Label>
+      <Label Text="{Binding MainAttachment.FilePath}" HorizontalOptions="CenterAndExpand"></Label>
+     
+
+
+    </StackLayout>
+  </Frame>-->
+</ViewCell>

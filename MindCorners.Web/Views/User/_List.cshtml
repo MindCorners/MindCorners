@@ -1,0 +1,168 @@
+﻿@using System.Web.UI.WebControls
+@using DevExpress.Utils
+@using DevExpress.Web
+@using DevExpress.Web.Internal
+@using DevExpress.Web.Mvc
+@using DevExpress.Web.Mvc.UI
+@using MindCorners.Common.Code
+@using MindCorners.Common.Code.Enums
+@using MindCorners.Web.Code
+
+@functions
+{
+    protected Dictionary<int, ListState<ListFilter>> ListStates
+    {
+        get { return Session["ListStates_" + (int)ModuleName.User] as Dictionary<int, ListState<ListFilter>> ?? new Dictionary<int, ListState<ListFilter>>(); }
+        set { Session["ListStates_" + (int)ModuleName.User] = value; }
+    }
+
+    protected ListState<ListFilter> ListState
+    {
+        get
+        {
+            if (ListStates != null && ListStates.ContainsKey((int)ModuleName.User))
+            {
+                return ListStates[(int)ModuleName.User];
+            }
+            return null;
+
+            // return ListStates[(int) ModuleName.TravelDocument];
+        }
+        set
+        {
+            var moduleName = (int)ModuleName.User;
+            var listStates = ListStates;
+            if (listStates != null)
+            {
+                listStates.AddOrReplace(moduleName, value);
+                ListStates = listStates;
+
+            }
+        }
+    }
+}
+
+@Html.DevExpress().GridView(
+    settings =>
+    {
+        settings.SettingsBehavior.AutoFilterRowInputDelay = 12000;
+        settings.Name = "gvMessageTemplate";
+        settings.KeyFieldName = "Id";
+        var showFilter = ListState == null || ListState.ShowFilter;
+
+        settings.CallbackRouteValues = new { Controller = "User", Action = "AdvancedCustomBindingPartial", showFilter, gridViewName = "gvUsers", listPartial = "_List" };
+        settings.CustomBindingRouteValuesCollection.Add(GridViewOperationType.Paging, new { Controller = "User", Action = "AdvancedCustomBindingPagingAction",  gridViewName = "gvUsers", listPartial = "_List" });
+        settings.CustomBindingRouteValuesCollection.Add(GridViewOperationType.Filtering, new { Controller = "User", Action = "AdvancedCustomBindingFilteringAction",  gridViewName = "gvUsers", listPartial = "_List" });
+        settings.CustomBindingRouteValuesCollection.Add(GridViewOperationType.Sorting, new { Controller = "User", Action = "AdvancedCustomBindingSortingAction",  gridViewName = "gvUsers", listPartial = "_List" });
+
+        settings.Width = Unit.Percentage(100);
+
+
+        settings.Settings.ShowFilterRow = showFilter;
+        settings.Settings.ShowFilterRowMenu = showFilter;
+        settings.SettingsPager.PageSize = 20;
+        settings.SettingsPager.Position = PagerPosition.Bottom;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        settings.SettingsBehavior.AllowGroup = false;
+        settings.SettingsBehavior.AllowDragDrop = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Styles.AlternatingRow.Enabled = DefaultBoolean.True;
+
+        //Customization window
+        settings.SettingsCustomizationWindow.Enabled = true;
+        settings.SettingsCustomizationWindow.PopupHorizontalAlign = PopupHorizontalAlign.LeftSides;
+        settings.SettingsCustomizationWindow.PopupVerticalAlign = PopupVerticalAlign.TopSides;
+
+        settings.SettingsPager.FirstPageButton.Visible = true;
+        settings.SettingsPager.LastPageButton.Visible = true;
+
+        //Client Side Events
+        settings.ClientSideEvents.FocusedRowChanged = "DevexpressHelper.Grid('#gridOperationMenu', '#gridOperationLinksTemplate', '#applicationEdit').OnGridFocusedRowChanged";
+        settings.ClientSideEvents.RowDblClick = "DevexpressHelper.Grid('#gridOperationMenu', '#gridOperationLinksTemplate', '#applicationEdit').OnGridDoubleClick";
+        settings.ClientSideEvents.EndCallback = "DevexpressHelper.Grid('#gridOperationMenu', '#gridOperationLinksTemplate', '#applicationEdit').OnGridEndCallback";
+        settings.ClientSideEvents.Init = "DevexpressHelper.Grid('#gridOperationMenu', '#gridOperationLinksTemplate', '#applicationEdit').OnGridInit";
+        settings.ClientSideEvents.ColumnStartDragging = "DevexpressHelper.Grid('#gridOperationMenu', '#gridOperationLinksTemplate', '#applicationEdit').OnGridColumnStartDragging";
+        settings.ClientSideEvents.BeginCallback = "DevexpressHelper.Grid('#gridOperationMenu', '#gridOperationLinksTemplate', '#applicationEdit').OnBeginCallback";
+
+        //Grid
+        settings.Columns.Add(column =>
+        {
+            column.Caption = "Role";
+            column.FieldName = "RoleId";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var properties = (ComboBoxProperties)column.PropertiesEdit;
+            properties.DataSource = (Dictionary<string, string>)ViewBag.Roles;
+            properties.ValueField = "Key";
+            properties.TextField = "Value";
+            properties.DropDownStyle = DropDownStyle.DropDown;
+            properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        });
+
+        if (User.IsInRole("Admin"))
+        {
+            //Grid
+            settings.Columns.Add(column =>
+            {
+                column.Caption = "Organization";
+                column.FieldName = "OrganizationId";
+                column.ColumnType = MVCxGridViewColumnType.ComboBox;
+                var properties = (ComboBoxProperties)column.PropertiesEdit;
+                properties.DataSource = (Dictionary<Guid, string>)ViewBag.Organizations;
+                properties.ValueField = "Key";
+                properties.TextField = "Value";
+                properties.DropDownStyle = DropDownStyle.DropDown;
+                properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+            });
+        }
+
+        settings.Columns.Add(column =>
+        {
+            column.Caption = "FirstName";
+            column.FieldName = "FirstName";
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.Caption = "LastName";
+            column.FieldName = "LastName";
+            column.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        });
+
+
+
+        settings.ClientLayout = (s, e) =>
+        {
+            if (e.LayoutMode == ClientLayoutMode.Loading)
+            {
+                if (ListState != null && ListState.LayoutData!= null)
+                    e.LayoutData = ListState.LayoutData;
+            }
+            else
+            {
+                var listState = ListState;
+                if (listState != null)
+                {
+                    listState.LayoutData= e.LayoutData;
+                    ListState = listState;
+                }
+            }
+        };
+
+        // Events
+        settings.PreRender = (s, e) =>
+        {
+            if (ViewData["VisibleID"] == null) return;
+
+            var grid = (ASPxGridView)s;
+            grid.MakeRowVisible(ViewData["VisibleID"]);
+        };
+
+        settings.CustomJSProperties = (sender, e) =>
+        {
+            var grid = (MVCxGridView)sender;
+            e.Properties["cpGridRowCount"] = grid.VisibleRowCount;
+            e.Properties["cpGridColumnCount"] = grid.VisibleColumns.Count;
+        };
+
+    }).BindToCustomData(Model).GetHtml()

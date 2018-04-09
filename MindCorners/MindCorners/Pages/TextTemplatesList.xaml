@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:MindCorners.Helpers.Converters;assembly=MindCorners"
+             xmlns:userControls="clr-namespace:MindCorners.UserControls;assembly=MindCorners"
+             x:Class="MindCorners.Pages.TextTemplatesList" NavigationPage.HasNavigationBar="false">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Color x:Key="uncheckedColor">Transparent</Color>
+            <Color x:Key="checkedColor">#95BB6B</Color>
+      <converters:BooleanToColorConverter TrueValue="{StaticResource checkedColor}" FalseValue="{StaticResource uncheckedColor}" x:Key="BooleanToColorConverter"/>
+      <converters:BooleanToReverseConverter  x:Key="BooleanToReverseConverter"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <userControls:HeaderInnerPages PageTitle="CHOOSE MESSAGE TEMPLATE" ShowSearchButton="False"/>
+        <Grid Grid.Row="1" BackgroundColor="#FFF">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--<Label Text="Templates" VerticalOptions="Center" HorizontalOptions="Center" />-->
+  <ListView x:Name="ListViewTemplates"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+            ItemsSource="{Binding Templates}"
+                SeparatorVisibility="None"
+             SelectedItem="{Binding SelectedItem, Mode=TwoWay}"  HasUnevenRows="True" Grid.Row="0">
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+                                <Grid HorizontalOptions="FillAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition Height="1"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid  Padding="10" BackgroundColor="{Binding IsSelected, Converter={StaticResource BooleanToColorConverter}}">
+                                    <Label Text="{Binding Text}" HorizontalOptions="FillAndExpand"></Label>
+                                </Grid>
+                                    <BoxView Color="#E2E8F1" Grid.Row="1" />
+                                </Grid>
+                                <!--<Image Source="{Binding Image}"></Image>-->
+          
+            <!--<Image IsVisible="{Binding IsSelected}" Source="checkmark.png" HorizontalOptions="End" Aspect="AspectFit" WidthRequest="16"></Image>-->
+            <!--<Button Text="{Binding FullName}" HorizontalOptions="FillAndExpand" Command="{Binding Path=BindingContext.ViewContactItemCommand, Source={x:Reference Name=ListViewContacts}}"  CommandParameter="{Binding Id}"></Button>-->
+          
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+  <Button Text="Use Text" Command="{Binding SelectTemplateCommand}"  Grid.Row="1" Style="{StaticResource GreenButton}" VerticalOptions="EndAndExpand" Margin="20,0,20,30"/>
+  </Grid>
+    </Grid>
+</ContentPage>

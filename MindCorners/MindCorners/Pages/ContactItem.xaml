@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:MindCorners.Helpers.Converters;assembly=MindCorners"
+             xmlns:controls="clr-namespace:Easterapps.Xamarin.Forms.Controls;assembly=MindCorners"
+             xmlns:userControls="clr-namespace:MindCorners.UserControls;assembly=MindCorners"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             x:Class="MindCorners.Pages.ContactItem"
+             NavigationPage.HasNavigationBar="false">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <converters:ConverterBase64ImageSource x:Key="Base64ToImageConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+ 
+  <ContentPage.Content>
+
+        <customControls:GradientContentView  StartColor="#8DB0EA" EndColor="#5C93EF"  Orientation="Horizontal" StartPointX="0.96" StartPointY="0.04" EndPointX="0.05" EndPointY="0.65">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Image Source="ProfileBackgroun.png" Grid.RowSpan="2" Grid.Row="0" Margin="0,30,0,50" Aspect="AspectFill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                <userControls:HeaderInnerPages PageTitle="CONTACT INFO" ShowSearchButton="False" BackgroundColor="Transparent" Grid.Row="0"/>
+                <Grid Grid.Row="1" Padding="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid ColumnSpacing="10" IsVisible="{Binding ViewItem.IsPending}" Margin="20" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Text="Accept" Style="{StaticResource GreenButton}" Command="{Binding AcceptContact}" HorizontalOptions="FillAndExpand"/>
+                        <Button Text="Reject" Style="{StaticResource RedButton}" Command="{Binding RejectContact}" HorizontalOptions="FillAndExpand" Grid.Column="1"/>
+                    </Grid>
+                    <StackLayout VerticalOptions="FillAndExpand"
+                   HorizontalOptions="FillAndExpand"   Spacing="10" Grid.Row="1" Padding="0,40,0,0"
+                   Orientation="Vertical">
+                        
+                        <abstractions:CircleImage Aspect="AspectFill"
+                                                                            Source="{Binding ViewItem.ProfileImageString}" 
+                                                                             BorderColor="#BECDF6" 
+                                                                            BorderThickness="3" 
+                                                                            WidthRequest="110"
+                                                                            HeightRequest="110" 
+                                                                              VerticalOptions="Start"
+                                                                              HorizontalOptions="CenterAndExpand"/>
+                        <Label Text="{Binding ViewItem.FullName}" FontSize="22" HorizontalOptions="CenterAndExpand" TextColor="#FFF"></Label>
+                        <Label Text="{Binding ViewItem.Email}" FontSize="16" HorizontalOptions="CenterAndExpand" TextColor="#FFF"></Label>
+                    </StackLayout>
+                </Grid>
+            </Grid>
+        </customControls:GradientContentView>
+
+        <!--<Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <userControls:HeaderInnerPages PageTitle="CONTACT INFO" ShowSearchButton="False"/>
+       
+
+
+
+                <Grid Grid.Row="1" BackgroundColor="#F6F6F6" Padding="20">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition Height="6*"/>
+        <RowDefinition/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <StackLayout VerticalOptions="FillAndExpand"
+                   HorizontalOptions="FillAndExpand"
+                   Orientation="Vertical"
+                   Spacing="15" Grid.Row="1">
+                    <Image Source="{Binding ViewItem.ProfileImageString}"  Aspect="AspectFit" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    </Image>
+        <Label Text="{Binding ViewItem.FullName}" FontSize="Large" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"></Label>
+        <Label Text="{Binding ViewItem.Email}"  HorizontalOptions="CenterAndExpand" FontAttributes="Bold"></Label>
+      </StackLayout>
+    </Grid>
+            </Grid>-->
+    </ContentPage.Content>
+</ContentPage>

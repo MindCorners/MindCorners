@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:MindCorners.Helpers.Converters;assembly=MindCorners"
+             xmlns:userControls="clr-namespace:MindCorners.UserControls;assembly=MindCorners"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             x:Class="MindCorners.Pages.PromptTemplates.AudioChatItem" NavigationPage.HasNavigationBar="false">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <converters:BooleanToReverseConverter x:Key="BooleanToReverseConverter"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+
+    <ContentPage.Content>
+
+        <customControls:GradientContentView  StartColor="#8DB0EA" EndColor="#5C93EF"  Orientation="Horizontal" StartPointX="0.96" StartPointY="0.04" EndPointX="0.05" EndPointY="0.65">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Image Source="ProfileBackgroun.png" Grid.RowSpan="2" Grid.Row="0" Margin="0,30,0,50" Aspect="AspectFill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                <userControls:HeaderInnerPages PageTitle="RECORD AUDIO" ShowSearchButton="False" BackgroundColor="Transparent" Grid.Row="0"/>
+                <Grid Grid.Row="1" Padding="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout VerticalOptions="StartAndExpand"
+                   HorizontalOptions="CenterAndExpand"   Spacing="10" Grid.Row="1"
+                   Orientation="Vertical">
+                        <Image Aspect="AspectFill" Source="audioRecord.png" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsVisible="{Binding CanRecord}" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StartRecordingCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image Aspect="AspectFill" Source="audioRecordPause.png" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsVisible="{Binding CanPause}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding  PauseRecordingCommand}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image Aspect="AspectFill" Source="audioRecord.png" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsVisible="{Binding CanResume}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding  ResumeRecordingCommand}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <!--<Button Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="2" Text="Start Recording"  Command="{Binding StartRecordingCommand}" HorizontalOptions="FillAndExpand"   VerticalOptions="EndAndExpand" IsVisible="{Binding CanRecord}" Style="{StaticResource GrayButton}" ></Button>
+                        <Button Grid.Column="0"  Grid.Row="2" Text="Stop Recording" Command="{Binding  StopRecordingCommand}" HorizontalOptions="FillAndExpand"   VerticalOptions="EndAndExpand" IsVisible="{Binding CanStop}" Style="{StaticResource GrayButton}"  ></Button>
+                        <Button Grid.Column="0"  Grid.ColumnSpan="2" Grid.Row="2" Text="Resume Recording" Command="{Binding  ResumeRecordingCommand}" HorizontalOptions="FillAndExpand"  VerticalOptions="EndAndExpand" IsVisible="{Binding CanResume}" Style="{StaticResource GrayButton}" ></Button>
+                        <Button Grid.Column="1"  Grid.Row="2" Text="Pause Recording" Command="{Binding  PauseRecordingCommand}" HorizontalOptions="FillAndExpand"  VerticalOptions="EndAndExpand" IsVisible="{Binding CanPause}" Style="{StaticResource GrayButton}" ></Button>-->
+
+
+
+                        
+                        <!--<Grid VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" >
+                            
+                            
+                            
+                            <Image Source="{Binding ProfileImageString}"  Aspect="AspectFit" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.RowSpan="2">
+                                <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ImgProfileImage_OnClicked"/>
+                            </Image.GestureRecognizers>
+                            </Image>-->
+                        <!--<Button Text="Edit" VerticalOptions="Start" HorizontalOptions="End" Clicked="ImgProfileImage_OnClicked" BackgroundColor="#95BB6B"/>
+                        </Grid>-->
+
+                        <Label Text="REC" HorizontalOptions="CenterAndExpand" Style="{StaticResource HeaderInnerPageTitle}" ></Label>
+                        <Label  FontSize="22" HorizontalOptions="CenterAndExpand" Style="{StaticResource HeaderInnerPageTitle}" Text="{Binding RecordTimeSecondsString}" Margin="20"/>
+                    </StackLayout>
+                    <Button Grid.Row="2" Text="Send" VerticalOptions="EndAndExpand"  HorizontalOptions="FillAndExpand" Command="{Binding StopRecordingCommand}"  IsVisible="{Binding CanStop}" Style="{StaticResource WhiteButton}"></Button>
+                </Grid>
+
+        <ActivityIndicator
+             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                           IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}" Grid.Row="0" Grid.RowSpan="2"/>
+            </Grid>
+        </customControls:GradientContentView>
+
+    </ContentPage.Content>
+    <!--<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <userControls:HeaderInnerPages PageTitle="YOUR AUDIO MESSAGE"/>
+        <Grid Grid.Row="1" BackgroundColor="#F6F6F6" Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="#D3D1E5" Padding="1" CornerRadius="8" HasShadow="False" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Frame BackgroundColor="#FFF" Padding="10" CornerRadius="8" HasShadow="False" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Your audio message ..."/>
+                        <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" FontSize="36" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Text="{Binding RecordTimeSeconds}"/>
+                        <Button Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="2" Text="Start Recording"  Command="{Binding StartRecordingCommand}" HorizontalOptions="FillAndExpand"   VerticalOptions="EndAndExpand" IsVisible="{Binding CanRecord}" Style="{StaticResource GrayButton}" ></Button>
+                        <Button Grid.Column="0"  Grid.Row="2" Text="Stop Recording" Command="{Binding  StopRecordingCommand}" HorizontalOptions="FillAndExpand"   VerticalOptions="EndAndExpand" IsVisible="{Binding CanStop}" Style="{StaticResource GrayButton}"  ></Button>
+                        <Button Grid.Column="0"  Grid.ColumnSpan="2" Grid.Row="2" Text="Resume Recording" Command="{Binding  ResumeRecordingCommand}" HorizontalOptions="FillAndExpand"  VerticalOptions="EndAndExpand" IsVisible="{Binding CanResume}" Style="{StaticResource GrayButton}" ></Button>
+                        <Button Grid.Column="1"  Grid.Row="2" Text="Pause Recording" Command="{Binding  PauseRecordingCommand}" HorizontalOptions="FillAndExpand"  VerticalOptions="EndAndExpand" IsVisible="{Binding CanPause}" Style="{StaticResource GrayButton}" ></Button>
+
+                    </Grid>
+                    
+                    
+                </Frame>
+            </Frame>
+            <Button Text="Send" Command="{Binding SendPostCommand}" Grid.Row="1" VerticalOptions="EndAndExpand" IsEnabled="{Binding CanSend}"  Style="{StaticResource GreenButton}" HorizontalOptions="FillAndExpand"></Button>
+        </Grid>
+    </Grid>-->
+</ContentPage>

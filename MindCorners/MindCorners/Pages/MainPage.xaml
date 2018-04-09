@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MindCorners.Pages.MainPage"
+             ClassId="MindCorners.Pages.MainPage"
+             xmlns:control="clr-namespace:MindCorners.UserControls;"
+             xmlns:carousel="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             xmlns:controls="clr-namespace:Easterapps.Xamarin.Forms.Controls;assembly=MindCorners"
+             xmlns:converters="clr-namespace:MindCorners.Helpers.Converters;assembly=MindCorners"
+             xmlns:userControls="clr-namespace:MindCorners.Pages.UserControls;assembly=MindCorners"
+             xmlns:controls1="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             xmlns:abstractions1="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             NavigationPage.HasNavigationBar="false" BackgroundColor="White"
+  Title="Main Page">
+    <!--<ContentPage.Padding>
+    <OnPlatform x:TypeArguments="Thickness"
+                iOS="0, 20, 0, 0"
+                Android="0"
+                />
+  </ContentPage.Padding>-->
+    <!-- EndColor="#A470FF"
+    -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BooleanToReverseConverter x:Key="BooleanToReverseConverter"/>
+            <converters:IndexToSequentialNumberConverter x:Key="IndexToSequentialNumberConverter"/>
+            <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
+            <converters:CountToVisibilityReverseConverter x:Key="CountToVisibilityReverseConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowSpacing="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+			<control:Header BindingContext="{Binding .}" ShowLogo="True" HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand" />
+            <Grid RowSpacing="0"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource ApplicationBackgoundColor}" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <userControls:PromptsTab BindingContext="{Binding .}" IsLatestTabActive="True" />
+                <!--<Entry x:Name="TxtSearch" Placeholder="Search" VerticalOptions="Start" Grid.Row="0"></Entry>-->
+                <!--<Entry Placeholder="Search" VerticalOptions="Start" Grid.Row="1" ></Entry>-->
+                <Grid Grid.Row="1" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <carousel:CarouselView Position="{Binding SelectedCardPosition}" Grid.Row="0" MinimumHeightRequest="400" ItemsSource="{Binding LatestPosts}" Margin="0,10,0,10"  VerticalOptions="FillAndExpand" x:Name="PostsCarouselView" >
+                        <carousel:CarouselView.ItemTemplate>
+                            <DataTemplate>
+
+                                 <Grid  ColumnSpacing="10" Padding="0,10"  MinimumHeightRequest="400">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition  Width="20"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!--IsVisible="{Binding Path=BindingContext.LatestPosts.Count, Source={x:Reference Name=PostsCarouselView},Converter={StaticResource BooleanToReverseConverter}, ConverterParameter={Binding Position, Source={x:Reference Name=PostsCarouselView}}}"-->
+                                    <!--<Frame  IsClippedToBounds="True" Grid.Column="0" CornerRadius="5" Margin="-5, 0, 0, 0" BackgroundColor="#F0F0F3" VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand" MinimumWidthRequest="200" MinimumHeightRequest="200" HasShadow="True"/>-->
+
+                                    <!--<customControls:CustomFrame Grid.Column="0" CornerRadius="0" ShadowOffsetX="0" ShadowOffsetY="3" ShadowOpacity="1" ShadowRadius="5" ShadowColor="#DAE0E1E3" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HasShadow="True"  Padding="0"  BackgroundColor="Transparent">
+                                        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0" RowSpacing="0" Margin="0" Padding="0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="7.5*"/>
+                                                <RowDefinition Height="2.5*"/>
+                                            </Grid.RowDefinitions>
+                                            <customControls:GradientContentView CornerRadius="9" RoundCorners="RoundRightTop"  Grid.Row="0" StartColor="Red" EndColor="Red" StartPointX="0.97" StartPointY="0.07" EndPointX="0.23" EndPointY="0.75" Orientation="Horizontal">
+                                            <Grid/>
+                                            </customControls:GradientContentView>
+                                            <customControls:GradientContentView  Grid.Row="1" StartColor="#FFF" EndColor="#FFF" CornerRadius="9" RoundCorners="RoundRightBottom">
+                                            <Grid/>
+                                            </customControls:GradientContentView>
+                                        </Grid>
+                                    </customControls:CustomFrame>
+                                    <customControls:CustomFrame Grid.Column="2" CornerRadius="0" ShadowOffsetX="0" ShadowOffsetY="3" ShadowOpacity="1" ShadowRadius="5" ShadowColor="#DAE0E1E3" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HasShadow="True"  Padding="0"  BackgroundColor="Transparent">
+                                        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0" RowSpacing="0" Margin="0" Padding="0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="7.5*"/>
+                                                <RowDefinition Height="2.5*"/>
+                                            </Grid.RowDefinitions>
+                                            <customControls:GradientContentView CornerRadius="9" RoundCorners="RoundLeftTop"  Grid.Row="0" StartColor="Red" EndColor="Red" StartPointX="0.97" StartPointY="0.07" EndPointX="0.23" EndPointY="0.75" Orientation="Horizontal" />
+                                            <customControls:GradientContentView  Grid.Row="1" StartColor="#FFF" EndColor="#FFF" CornerRadius="9" RoundCorners="RoundLeftBottom"/>
+                                        </Grid>
+                                    </customControls:CustomFrame>
+                                    -->
+                                    <customControls:CustomFrame Grid.Column="1"  CornerRadius="9" ShadowOffsetX="0" ShadowOffsetY="3" ShadowOpacity="1" ShadowRadius="5" ShadowColor="#DAE0E1E3" Margin="10,0,10,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HasShadow="True"  Padding="0"  BackgroundColor="#FFF">
+                                        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0" RowSpacing="0" Margin="0" Padding="0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="7.5*"/>
+                                                <RowDefinition Height="2.5*"/>
+                                            </Grid.RowDefinitions>
+                                            <customControls:GradientContentView  CornerRadius="9" RoundCorners="RoundTop" StartColor="#95BB6B" EndColor="#3CAF59" StartPointX="0.11" StartPointY="0.09" EndPointX="0.89" EndPointY="0.92" Orientation="Horizontal" IsVisible="{Binding HasReplies}">
+                                                <Grid VerticalOptions="Fill" HorizontalOptions="FillAndExpand" Padding="20" RowSpacing="10" >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="3*"/>
+                                                        <ColumnDefinition Width="4*"/>
+                                                        <ColumnDefinition Width="3*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition/>
+                                                        <RowDefinition/>
+                                                    </Grid.RowDefinitions>
+                                                    <abstractions:CircleImage Aspect="AspectFill"
+                                                                            Source="{Binding UserProfileImageName}" 
+                                                                             BorderColor="#B5F1B9" 
+                                                                            BorderThickness="5" 
+                                                                            Grid.Column="1"
+                                                                            WidthRequest="100"
+                                                                            HeightRequest="100" 
+                                                                              VerticalOptions="EndAndExpand"
+                                                                              HorizontalOptions="CenterAndExpand">
+                                                        <abstractions:CircleImage.GestureRecognizers>
+                                                            <TapGestureRecognizer  Command="{Binding Path=BindingContext.EditPostCommand, Source={x:Reference Name=PostsCarouselView}}" CommandParameter="{Binding Id}"/>
+                                                        </abstractions:CircleImage.GestureRecognizers>
+                                                    </abstractions:CircleImage>
+                                                    <!--<customControls:ImageCircle Aspect="AspectFill" 
+                                                                            Source="{Binding UserProfileImageName}" 
+                                                                            BorderColor="{StaticResource MainPagePromptCreatorImageBorderColor}" 
+                                                                            BorderWidth="5" 
+                                                                            Grid.Column="1"
+                                                                            WidthRequest="100"
+                                                                            HeightRequest="100" VerticalOptions="EndAndExpand">
+                                                        <customControls:ImageCircle.GestureRecognizers>
+                                                            <TapGestureRecognizer  Command="{Binding Path=BindingContext.EditPostCommand, Source={x:Reference Name=PostsCarouselView}}" CommandParameter="{Binding Id}"/>
+                                                        </customControls:ImageCircle.GestureRecognizers>
+                                                    </customControls:ImageCircle>-->
+                                                    <Grid Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3"   VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Label Text="{Binding Title}" LineBreakMode="TailTruncation"  FontSize="24" Grid.Row="0" VerticalOptions="CenterAndExpand"  HorizontalOptions="Center" TextColor="{StaticResource MainPagePromptCreatorFontColor}" >
+                                                            <!--<Label.FontFamily>
+                                                        <OnPlatform x:TypeArguments="x:String">
+                                                            <OnPlatform.iOS>Lobster-Regular</OnPlatform.iOS>
+                                                            <OnPlatform.Android>Lobster-Regular.ttf#Lobster-Regular</OnPlatform.Android>
+                                                        </OnPlatform>
+                                                    </Label.FontFamily>-->
+                                                            <Label.GestureRecognizers>
+                                                                <TapGestureRecognizer  Command="{Binding Path=BindingContext.EditPostCommand, Source={x:Reference Name=PostsCarouselView}}" CommandParameter="{Binding Id}"/>
+                                                            </Label.GestureRecognizers>
+                                                        </Label>
+                                                        <StackLayout VerticalOptions="CenterAndExpand" Orientation="Vertical"  Grid.Row="1" HorizontalOptions="CenterAndExpand" Spacing="3">
+                                                            <StackLayout.GestureRecognizers>
+                                                                <TapGestureRecognizer  Command="{Binding Path=BindingContext.EditPostCommand, Source={x:Reference Name=PostsCarouselView}}" CommandParameter="{Binding Id}"/>
+                                                            </StackLayout.GestureRecognizers>
+                                                            <Label FormattedText="{Binding CustomFormattedTextForCardView}" LineBreakMode="TailTruncation" FontSize="16" HorizontalTextAlignment="Center" />
+                                                            <Label Text="{Binding DateCreatedValue}" LineBreakMode="TailTruncation" FontSize="16" TextColor="#B5F1B9"  HorizontalTextAlignment="Center"/>
+                                                            <!--<customControls:HtmlFormattedLabel Text="{Binding FormatedFromText}" LineBreakMode="TailTruncation"></customControls:HtmlFormattedLabel>-->
+                                                            <!--<Label Text="From" TextColor="#697780" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand"/>
+                                                        <Label Text="{Binding CreatorFullName}" Style="{StaticResource MainPagePromptsTitle}" LineBreakMode="TailTruncation" />
+                                                        <Label Text="for" TextColor="#697780" LineBreakMode="NoWrap"/>
+                                                        <Label Text="{Binding CircleName}"  Style="{StaticResource MainPagePromptsTitle}" LineBreakMode="TailTruncation"></Label>-->
+                                                        </StackLayout>
+                                                    </Grid>
+                                                </Grid>
+                                                <!--<customControls:GradientContentView StartColor="#8DB0EA" EndColor="#5C93EF" StartPointX="0.97" StartPointY="0.07" EndPointX="0.23" EndPointY="0.75" Orientation="Horizontal">-->
+
+                                            </customControls:GradientContentView>
+                                            <customControls:GradientContentView CornerRadius="9" RoundCorners="RoundTop"  Grid.Row="0" StartColor="#8DB0EA" EndColor="#5C93EF" StartPointX="0.97" StartPointY="0.07" EndPointX="0.23" EndPointY="0.75" Orientation="Horizontal"  IsVisible="{Binding HasReplies, Converter={StaticResource BooleanToReverseConverter}}">
+                                                <Grid VerticalOptions="Fill" HorizontalOptions="FillAndExpand" Padding="20" RowSpacing="10" >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="3*"/>
+                                                        <ColumnDefinition Width="4*"/>
+                                                        <ColumnDefinition Width="3*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition/>
+                                                        <RowDefinition/>
+                                                    </Grid.RowDefinitions>
+                                                    <abstractions:CircleImage Aspect="AspectFill"
+                                                                            Source="{Binding UserProfileImageName}" 
+                                                                             BorderColor="{StaticResource MainPagePromptCreatorImageBorderColor}" 
+                                                                            BorderThickness="5" 
+                                                                            Grid.Column="1"
+                                                                            WidthRequest="100"
+                                                                            HeightRequest="100" 
+                                                                              VerticalOptions="EndAndExpand" 
+                                                                              HorizontalOptions="CenterAndExpand">
+                                                        <abstractions:CircleImage.GestureRecognizers>
+                                                            <TapGestureRecognizer  Command="{Binding Path=BindingContext.EditPostCommand, Source={x:Reference Name=PostsCarouselView}}" CommandParameter="{Binding Id}"/>
+                                                        </abstractions:CircleImage.GestureRecognizers>
+                                                    </abstractions:CircleImage>
+                                                    <!--<customControls:ImageCircle Aspect="AspectFill" 
+                                                                            Source="{Binding UserProfileImageName}" 
+                                                                            BorderColor="{StaticResource MainPagePromptCreatorImageBorderColor}" 
+                                                                            BorderWidth="5" 
+                                                                            Grid.Column="1"
+                                                                            WidthRequest="100"
+                                                                            HeightRequest="100" VerticalOptions="EndAndExpand">
+                                                        <customControls:ImageCircle.GestureRecognizers>
+                                                            <TapGestureRecognizer  Command="{Binding Path=BindingContext.EditPostCommand, Source={x:Reference Name=PostsCarouselView}}" CommandParameter="{Binding Id}"/>
+                                                        </customControls:ImageCircle.GestureRecognizers>
+                                                    </customControls:ImageCircle>-->
+                                                    <Grid Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3"   VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Label Text="{Binding Title}" LineBreakMode="TailTruncation"  FontSize="24" Grid.Row="0" VerticalOptions="CenterAndExpand"  HorizontalOptions="Center" TextColor="{StaticResource MainPagePromptCreatorFontColor}" >
+                                                            <!--<Label.FontFamily>
+                                                        <OnPlatform x:TypeArguments="x:String">
+                                                            <OnPlatform.iOS>Lobster-Regular</OnPlatform.iOS>
+                                                            <OnPlatform.Android>Lobster-Regular.ttf#Lobster-Regular</OnPlatform.Android>
+                                                        </OnPlatform>
+                                                    </Label.FontFamily>-->
+                                                            <Label.GestureRecognizers>
+                                                                <TapGestureRecognizer  Command="{Binding Path=BindingContext.EditPostCommand, Source={x:Reference Name=PostsCarouselView}}" CommandParameter="{Binding Id}"/>
+                                                            </Label.GestureRecognizers>
+                                                        </Label>
+                                                        <StackLayout VerticalOptions="CenterAndExpand" Orientation="Vertical"  Grid.Row="1" HorizontalOptions="CenterAndExpand" Spacing="3">
+                                                            <StackLayout.GestureRecognizers>
+                                                                <TapGestureRecognizer  Command="{Binding Path=BindingContext.EditPostCommand, Source={x:Reference Name=PostsCarouselView}}" CommandParameter="{Binding Id}"/>
+                                                            </StackLayout.GestureRecognizers>
+                                                            <Label FormattedText="{Binding CustomFormattedTextForCardView}" LineBreakMode="TailTruncation" FontSize="16" HorizontalTextAlignment="Center" />
+                                                            <Label Text="{Binding DateCreatedValue}" LineBreakMode="TailTruncation" FontSize="16" TextColor="#C6DCFF"  HorizontalTextAlignment="Center"/>
+                                                            <!--<customControls:HtmlFormattedLabel Text="{Binding FormatedFromText}" LineBreakMode="TailTruncation"></customControls:HtmlFormattedLabel>-->
+                                                            <!--<Label Text="From" TextColor="#697780" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand"/>
+                                                        <Label Text="{Binding CreatorFullName}" Style="{StaticResource MainPagePromptsTitle}" LineBreakMode="TailTruncation" />
+                                                        <Label Text="for" TextColor="#697780" LineBreakMode="NoWrap"/>
+                                                        <Label Text="{Binding CircleName}"  Style="{StaticResource MainPagePromptsTitle}" LineBreakMode="TailTruncation"></Label>-->
+                                                        </StackLayout>
+                                                    </Grid>
+                                                </Grid>
+
+                                            </customControls:GradientContentView>
+                                            <customControls:GradientContentView  Grid.Row="1" StartColor="#FFF" EndColor="#FFF" CornerRadius="9" RoundCorners="RoundBottom"  Padding="20,10" >
+                                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" ColumnSpacing="0" RowSpacing="10">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition  Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Label HorizontalOptions="StartAndExpand" Grid.Column="0" Grid.Row="1" Text="{Binding LastUpdatedUserFullName}" VerticalOptions="Center" TextColor="#283956" FontSize="16" LineBreakMode="TailTruncation" ></Label>
+                                                    <Label HorizontalOptions="EndAndExpand" Grid.Column="1" Grid.Row="1" Text="{Binding LastUpdatedDateValue}" VerticalOptions="Center" FontSize="14" TextColor="#9B9B9C"></Label>
+                                                    <Grid Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="2" >
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <StackLayout  HorizontalOptions="StartAndExpand" Grid.Column="0" Orientation="Horizontal" VerticalOptions="Center">
+                                                            <Image Source="{Binding LastAttachmentTypeImage}" Aspect="AspectFit"></Image>
+                                                            <Label Text="{Binding LastAttachmentTypeName}" TextColor="#979898" FontSize="14"></Label>
+                                                        </StackLayout>
+                                                        <Image Source="leftArrow.png"  VerticalOptions="Center" HorizontalOptions="EndAndExpand" Grid.Column="1" Aspect="AspectFill">
+                                                            <Image.GestureRecognizers>
+                                                                <TapGestureRecognizer  Command="{Binding Path=BindingContext.EditPostCommand, Source={x:Reference Name=PostsCarouselView}}" CommandParameter="{Binding Id}"/>
+                                                            </Image.GestureRecognizers>
+                                                        </Image>
+                                                    </Grid>
+
+                                                    <!--<Button Text=">" BackgroundColor="Transparent" BorderColor="Transparent" FontSize="Large" FontAttributes="Bold" VerticalOptions="Center" Grid.Column="1" Grid.Row="1" Command="{Binding Path=BindingContext.EditPostCommand, Source={x:Reference Name=PostsCarouselView}}" CommandParameter="{Binding Id}" HorizontalOptions="EndAndExpand"/>-->
+
+                                                </Grid>
+                                            </customControls:GradientContentView>
+                                        </Grid>
+                                    </customControls:CustomFrame>
+                                </Grid>
+                                 </DataTemplate>
+                        </carousel:CarouselView.ItemTemplate>
+                    </carousel:CarouselView>
+
+                                <!--<Frame IsClippedToBounds="True" Grid.Column="2" CornerRadius="5"  Margin="0, 0, -5, 0"  BackgroundColor="#F0F0F3" VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand" MinimumWidthRequest="200" MinimumHeightRequest="200" HasShadow="True"/>-->
+
+
+                                <!--<StackLayout Grid.Row="1" BackgroundColor="#80000000" Padding="12">
+                  <Label TextColor="White" Text="{Binding Title}" FontSize="16" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                </StackLayout>
+
+
+
+
+                <Grid>
+                  <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                  </Grid.RowDefinitions>
+                 
+                  <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" Grid.Row="2">
+                    <Label Text="From "></Label>
+                    <Label Text="{Binding CreatorFullName}"></Label>
+                    <Label Text=" for "></Label>
+                    <Label Text="{Binding CircleName}"></Label>
+                  </StackLayout>
+                </Grid>-->
+
+                           
+                    <ActivityIndicator
+             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                           IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}" Grid.Row="0" />
+
+
+                    <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Grid.Row="1" Orientation="Horizontal" IsVisible="{Binding ListCount, Converter={StaticResource CountToVisibilityConverter}}">
+                        <!--<Label TextColor="#62717A" FontSize="18" >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                    <Span Text="{Binding Path=Position, Source={x:Reference Name=PostsCarouselView}, Converter={StaticResource IndexToSequentialNumberConverter}}"/>
+                                    <Span Text="/"/>
+                                    <Span Text="{Binding Path=BindingContext.LatestPosts.Count, Source={x:Reference Name=PostsCarouselView}}"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                    </Label>-->
+                        <Label Text="{Binding Path=Position, Source={x:Reference Name=PostsCarouselView}, Converter={StaticResource IndexToSequentialNumberConverter}}"  TextColor="#AAB4BD" FontSize="18" />
+                        <Label Text="/" TextColor="#AAB4BD" FontSize="18" />
+                        <Label Text="{Binding Path=LatestPosts.Count}" TextColor="#AAB4BD" FontSize="18" />
+                    </StackLayout>
+                </Grid>
+
+                <Grid Grid.Row="1" IsVisible="{Binding ListCount, Converter={StaticResource CountToVisibilityReverseConverter}}">
+                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Spacing="30">
+                        <Image HorizontalOptions="CenterAndExpand" Aspect="AspectFit" Source="noStories.png"/>
+                        <Label Text="YOU DON'T HAVE STORIES" HorizontalOptions="CenterAndExpand" TextColor="#ABBDDC"  FontSize="20"></Label>
+                        <!--<Label Text="Some text" HorizontalOptions="CenterAndExpand" TextColor="#ABBDDC"  FontSize="16"></Label>-->
+                    </StackLayout>
+                </Grid>
+
+
+                <!--List of Monkeys below-->
+
+
+
+            </Grid>
+
+            <Frame Grid.Row="2"  HasShadow="False" Padding="0" Margin="-2,0,-2,-2" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                <control:Footer  BindingContext="{Binding .}" BackgroundColor="{StaticResource ApplicationBackgoundColor}"/>
+            </Frame>
+
+        </Grid>
+
+
+
+
+        <!--<StackLayout VerticalOptions="StartAndExpand">
+        <Label Text="{Binding TestINfo}"></Label>-->
+
+
+        <!--<carousel:CarouselView ItemsSource="{Binding LatestPosts}">
+           <carousel:CarouselView.ItemTemplate>
+             <DataTemplate>
+               <Grid>
+                 <Grid.RowDefinitions>
+                   <RowDefinition Height="200"/>
+                   <RowDefinition Height="Auto"/>
+                 </Grid.RowDefinitions>
+                 <Image Grid.RowSpan="2" Aspect="AspectFill" Source="images.png"/>
+                 <StackLayout Grid.Row="1" BackgroundColor="#80000000" Padding="12">
+                   <Label TextColor="White" Text="{Binding Title}" FontSize="16" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                 </StackLayout>
+               </Grid>
+             </DataTemplate>
+           </carousel:CarouselView.ItemTemplate>-->
+
+        <!--<carousel:CarouselView.ItemTemplate>
+            <DataTemplate>
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition/>
+                  <RowDefinition/>
+                  <RowDefinition/>
+                  <RowDefinition/>
+                  <RowDefinition/>
+                  <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Text="{Binding Title}"  Grid.Row="1" VerticalOptions="CenterAndExpand"/>
+                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" Grid.Row="2">
+                    <Label Text="From "></Label>
+                  <Label Text="{Binding CreatorFullName}"></Label>
+                  <Label Text=" for "></Label>
+                  <Label Text="{Binding CircleName}"></Label>
+                </StackLayout>
+              </Grid>
+            </DataTemplate>
+            </carousel:CarouselView.ItemTemplate>-->
+        <!--</carousel:CarouselView>
+        <StackLayout HorizontalOptions="CenterAndExpand">
+          <ListView x:Name="ListViewNews" 
+                    ItemsSource="{Binding LatestPosts}"
+                    HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="True"
+                      RowHeight="60">
+            <ListView.ItemTemplate>
+              <DataTemplate>
+                <ViewCell>
+                <Label Text="{Binding Title}"  Grid.Row="1" VerticalOptions="CenterAndExpand"/>
+                  </ViewCell>-->
+        <!--<Grid>
+                  <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                  </Grid.RowDefinitions>
+                  <Label Text="{Binding Title}"  Grid.Row="1" VerticalOptions="CenterAndExpand"/>
+                  <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" Grid.Row="2">
+                    <Label Text="From "></Label>
+                    <Label Text="{Binding CreatorFullName}"></Label>
+                    <Label Text=" for "></Label>
+                    <Label Text="{Binding CircleName}"></Label>
+                  </StackLayout>
+                </Grid>-->
+
+
+
+        <!--</DataTemplate>
+            </ListView.ItemTemplate>
+          </ListView>
+        </StackLayout>-->
+
+        <!--<ScrollView>
+          <StackLayout>
+            <ListView x:Name="ListViewNews">
+              <ListView.ItemTemplate>
+                <DataTemplate>
+                  <TextCell Text="{Binding Title}" />
+                </DataTemplate>
+              </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout Spacing="15">
+              <Image Source="images.png" Aspect="AspectFit"></Image>
+              <Image Source="images.png" Aspect="AspectFit"></Image>
+              <Image Source="images.png" Aspect="AspectFit"></Image>
+              <Image Source="images.png" Aspect="AspectFit"></Image>
+            </StackLayout>
+
+          </StackLayout>
+        </ScrollView>-->
+
+        <!-- middle controls -->
+        <!--</StackLayout>-->
+        <!--<StackLayout Spacing="0">
+      
+      <StackLayout Orientation="Horizontal" VerticalOptions="End">
+        
+        
+      </StackLayout>
+    </StackLayout>-->
+
+    </ContentPage.Content>
+</ContentPage>

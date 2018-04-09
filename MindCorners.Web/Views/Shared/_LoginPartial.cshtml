@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNet.Identity
+@using MindCorners.Authentication
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @{
+                    var manager = new UserManager<ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>(new ApplicationDbContext()));
+                    var currentUser = manager.FindById(User.Identity.GetUserId());
+                    //string base64String = currentUser.UserProfile.ProfileImage != null ? string.Format("data:image/png;base64,{0}", Convert.ToBase64String(currentUser.UserProfile.ProfileImage)) : "/Content/Images/defaultPersonImage.png";
+                    string base64String = currentUser.UserProfile.ProfileImageString  != null ? Url.Action("GetProfileImageByName", "Manage", new { fileName = currentUser.UserProfile.ProfileImageString }) : "/Content/Images/defaultPersonImage.png";
+
+                }
+                <div style="float: left">
+                    <img class="img-circle" width="50px;" height="50px" src="@base64String" />
+                    @Html.ActionLink(string.Format("Hello {0} {1}", currentUser.UserProfile.FirstName, currentUser.UserProfile.LastName) + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                </div>
+
+
+                @*@Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})*@
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+                        }
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>@Html.ActionLink("Register", "RegisterActivationCode", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                        </ul>
+                    }
+<style>
+    .profileImageFigure {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        overflow: hidden;
+        float: left;
+    }
+    .img-circle {
+    border-radius: 50%;
+}
+</style>

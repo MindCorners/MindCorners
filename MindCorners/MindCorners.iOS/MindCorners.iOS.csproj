@@ -1,0 +1,957 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{AC076161-0B20-4CD0-BD56-D8A74E77FFC1}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MindCorners.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>MindCornersiOS</AssemblyName>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ReleaseVersion>0.1.1</ReleaseVersion>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer: Nino Chogovadze (M72U7J72PE)</CodesignKey>
+    <CodesignProvision>314f6072-cbe3-436c-aa51-525740b2c0e0</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <CodesignKey>iPhone Developer: Nino Chogovadze (M72U7J72PE)</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>314f6072-cbe3-436c-aa51-525740b2c0e0</CodesignProvision>
+    <BuildIpa>true</BuildIpa>
+    <IOSDebuggerPort>10001</IOSDebuggerPort>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <IpaPackageName>
+    </IpaPackageName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <BuildIpa>True</BuildIpa>
+    <CodesignProvision>56d3b104-4271-4aa5-b4f3-e4c72610c8c6</CodesignProvision>
+    <CodesignKey>iPhone Developer: Nino Chogovadze (M72U7J72PE)</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CustomControls\AudioPlayerService.cs" />
+    <Compile Include="CustomControls\AudioRecorder.cs" />
+    <Compile Include="CustomControls\CustomRender\AudioSliderRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\CardViewRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\CircleButtonRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\CustomButtonRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\CustomVideoCameraRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\CustomCameraRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\CustomEditorRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\CustomEntryRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\CustomFrameRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\CustomSliderRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\FrameCustomRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\CustomContentViewRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\HtmlFormattedLabelRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\GradientContentViewRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\ImageButtonRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\ImageCircleRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\ImageWithBorderRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\InfiniteListViewRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\LabelRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\MyVideoPlayerRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\RoundedBoxRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\TransparentPopupRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\VideoPlayerRenderer.cs" />
+    <Compile Include="CustomControls\CustomRender\ViewCellItemSelectedCustomRenderer.cs" />
+    <Compile Include="CustomControls\GetVideoThumbnailService.cs" />
+    <Compile Include="CustomControls\MyMPMoviePlayerController.cs" />
+    <Compile Include="CustomControls\MyVideoView.cs" />
+    <Compile Include="CustomControls\TextToSpeechImplementation.cs" />
+    <Compile Include="CustomSearchBarRenderer.cs" />
+    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <None Include="app.config" />
+    <None Include="Entitlements.plist" />
+    <None Include="Info.plist">
+      <SubType>Designer</SubType>
+    </None>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <ITunesArtwork Include="iTunesArtwork" />
+    <None Include="packages.config" />
+    <BundleResource Include="Resources\Fonts\bluefires_sample.ttf" />
+    <BundleResource Include="Resources\Fonts\Lato-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lobster-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lato-Black.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lato-BlackItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lato-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lato-BoldItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lato-Hairline.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lato-HairlineItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lato-Heavy.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lato-HeavyItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lato-Italic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lato-Light.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lato-LightItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lato-Medium.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lato-MediumItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lato-Semibold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lato-SemiboldItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lato-Thin.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\Fonts\Lato-ThinItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+    <Compile Include="CustomControls\CustomRender\CustomVideoPlayerRenderer.cs" />
+    <BundleResource Include="Resources\alertError.png" />
+    <BundleResource Include="Resources\alertError%400,5x.png" />
+    <BundleResource Include="Resources\alertError%401,5x.png" />
+    <BundleResource Include="Resources\alertError%402x.png" />
+    <BundleResource Include="Resources\alertError%403x.png" />
+    <BundleResource Include="Resources\videoStartRecording.png" />
+    <BundleResource Include="Resources\videoStartRecording%400,5x.png" />
+    <BundleResource Include="Resources\videoStartRecording%401,5x.png" />
+    <BundleResource Include="Resources\videoStartRecording%402x.png" />
+    <BundleResource Include="Resources\videoStartRecording%403x.png" />
+    <BundleResource Include="Resources\videoStopRecording.png" />
+    <BundleResource Include="Resources\videoStopRecording%400,5x.png" />
+    <BundleResource Include="Resources\videoStopRecording%401,5x.png" />
+    <BundleResource Include="Resources\videoStopRecording%402x.png" />
+    <BundleResource Include="Resources\videoStopRecording%403x.png" />
+    <BundleResource Include="Resources\tellMeMore.png" />
+    <BundleResource Include="Resources\tellMeMore%400,5x.png" />
+    <BundleResource Include="Resources\tellMeMore%401,5x.png" />
+    <BundleResource Include="Resources\tellMeMore%402x.png" />
+    <BundleResource Include="Resources\tellMeMore%403x.png" />
+    <BundleResource Include="Resources\tellMeMoreBlue.png" />
+    <BundleResource Include="Resources\tellMeMoreBlue%400,5x.png" />
+    <BundleResource Include="Resources\tellMeMoreBlue%401,5x.png" />
+    <BundleResource Include="Resources\tellMeMoreBlue%402x.png" />
+    <BundleResource Include="Resources\tellMeMoreBlue%403x.png" />
+    <BundleResource Include="Resources\Icon-60%402x.png" />
+    <BundleResource Include="Resources\Icon-60%403x.png" />
+    <BundleResource Include="Resources\Icon-72.png" />
+    <BundleResource Include="Resources\Icon-72%402x.png" />
+    <BundleResource Include="Resources\Icon-76.png" />
+    <BundleResource Include="Resources\Icon-76%402x.png" />
+    <BundleResource Include="Resources\Icon-83.5%402x.png" />
+    <BundleResource Include="Resources\Icon-Notification.png" />
+    <BundleResource Include="Resources\Icon-Notification%403x.png" />
+    <BundleResource Include="Resources\Icon-Small-40.png" />
+    <BundleResource Include="Resources\Icon-Small-40%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-50.png" />
+    <BundleResource Include="Resources\Icon-Small-50%402x.png" />
+    <BundleResource Include="Resources\Icon-Small.png" />
+    <BundleResource Include="Resources\Icon-Small%402x.png" />
+    <BundleResource Include="Resources\Icon-Small%403x.png" />
+    <BundleResource Include="Resources\Icon.png" />
+    <BundleResource Include="Resources\Icon%402x.png" />
+    <BundleResource Include="Resources\group_Inactive%400,5x.png" />
+    <BundleResource Include="Resources\group_Inactive%401,5x.png" />
+    <BundleResource Include="Resources\group_Inactive%402x.png" />
+    <BundleResource Include="Resources\group_Inactive%403x.png" />
+    <BundleResource Include="Resources\homeScreen_Active%400,5x.png" />
+    <BundleResource Include="Resources\homeScreen_Active%401,5x.png" />
+    <BundleResource Include="Resources\homeScreen_Active%402x.png" />
+    <BundleResource Include="Resources\homeScreen_Active%403x.png" />
+    <Compile Include="CustomControls\CustomRender\AnimationNavigationRenderer.cs" />
+    <BundleResource Include="Resources\leftArrow%400,5x.png" />
+    <BundleResource Include="Resources\leftArrow%401,5x.png" />
+    <BundleResource Include="Resources\leftArrow%402x.png" />
+    <BundleResource Include="Resources\leftArrow%403x.png" />
+    <BundleResource Include="Resources\checked%400,5x.png" />
+    <BundleResource Include="Resources\checked%401,5x.png" />
+    <BundleResource Include="Resources\checked%402x.png" />
+    <BundleResource Include="Resources\checked%403x.png" />
+    <BundleResource Include="Resources\unchecked%400,5x.png" />
+    <BundleResource Include="Resources\unchecked%401,5x.png" />
+    <BundleResource Include="Resources\unchecked%402x.png" />
+    <BundleResource Include="Resources\unchecked%403x.png" />
+    <BundleResource Include="Resources\video%400,5x.png" />
+    <BundleResource Include="Resources\video%401,5x.png" />
+    <BundleResource Include="Resources\video%402x.png" />
+    <BundleResource Include="Resources\video%403x.png" />
+    <BundleResource Include="Resources\audio%400,5x.png" />
+    <BundleResource Include="Resources\audio%401,5x.png" />
+    <BundleResource Include="Resources\audio%402x.png" />
+    <BundleResource Include="Resources\audio%403x.png" />
+    <BundleResource Include="Resources\picture%400,5x.png" />
+    <BundleResource Include="Resources\picture%401,5x.png" />
+    <BundleResource Include="Resources\picture%402x.png" />
+    <BundleResource Include="Resources\picture%403x.png" />
+    <BundleResource Include="Resources\text%400,5x.png" />
+    <BundleResource Include="Resources\text%401,5x.png" />
+    <BundleResource Include="Resources\text%402x.png" />
+    <BundleResource Include="Resources\text%403x.png" />
+    <Compile Include="CustomControls\CustomRender\CustomCaruselViewRenderer.cs" />
+    <BundleResource Include="Resources\profilePlaceholder%403x.png" />
+    <BundleResource Include="Resources\profilePlaceholder%402x.png" />
+    <BundleResource Include="Resources\profilePlaceholder%401,5x.png" />
+    <BundleResource Include="Resources\profilePlaceholder%400,5x.png" />
+    <BundleResource Include="Resources\profilePlaceholder.png" />
+    <Compile Include="CustomControls\CustomRender\CustomActivityIndicator.cs" />
+    <BundleResource Include="Resources\close%403x.png" />
+    <BundleResource Include="Resources\close%402x.png" />
+    <BundleResource Include="Resources\close%401,5x.png" />
+    <BundleResource Include="Resources\close%400,5x.png" />
+    <Compile Include="CustomControls\CustomRender\CustomViewCellRenderer.cs" />
+    <Compile Include="CustomControls\CameraPermissionChecker.cs" />
+    <BundleResource Include="Resources\MindCornersLaunchScreen%403x.png" />
+    <BundleResource Include="Resources\MindCornersLaunchScreen%402x.png" />
+    <BundleResource Include="Resources\MindCornersLaunchScreen%401,5x.png" />
+    <BundleResource Include="Resources\MindCornersLaunchScreen%400,5x.png" />
+    <BundleResource Include="Resources\MindCornersLaunchScreen.png" />
+    <BundleResource Include="Resources\readyToReply%403x.png" />
+    <BundleResource Include="Resources\readyToReply%402x.png" />
+    <BundleResource Include="Resources\readyToReply%401,5x.png" />
+    <BundleResource Include="Resources\readyToReply%400,5x.png" />
+    <BundleResource Include="Resources\readyToReply.png" />
+    <BundleResource Include="Resources\mainPromptAudioPlay%403x.png" />
+    <BundleResource Include="Resources\mainPromptAudioPlay%402x.png" />
+    <BundleResource Include="Resources\mainPromptAudioPlay%401,5x.png" />
+    <BundleResource Include="Resources\mainPromptAudioPlay%400,5x.png" />
+    <BundleResource Include="Resources\mainPromptAudioPlay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="CarouselView.FormsPlugin.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\CarouselView.FormsPlugin.4.4.3\lib\Xamarin.iOS10\CarouselView.FormsPlugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="CarouselView.FormsPlugin.iOS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\CarouselView.FormsPlugin.4.4.3\lib\Xamarin.iOS10\CarouselView.FormsPlugin.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="ExifLib, Version=1.0.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\ExifLib.PCL.1.0.1\lib\portable-net45+sl50+win+WindowsPhoneApp81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\ExifLib.dll</HintPath>
+    </Reference>
+    <Reference Include="ButtonCircle.FormsPlugin.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Plugins.Forms.ButtonCircle.1.0.36\lib\Xamarin.iOS10\ButtonCircle.FormsPlugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="ButtonCircle.FormsPlugin.iOS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Plugins.Forms.ButtonCircle.1.0.36\lib\Xamarin.iOS10\ButtonCircle.FormsPlugin.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageCircle.Forms.Plugin.Abstractions, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Xam.Plugins.Forms.ImageCircle.1.8.1\lib\Xamarin.iOS10\ImageCircle.Forms.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageCircle.Forms.Plugin.iOS, Version=1.8.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Xam.Plugins.Forms.ImageCircle.1.8.1\lib\Xamarin.iOS10\ImageCircle.Forms.Plugin.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Octane.Xam.VideoPlayer, Version=1.2.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Octane.Xam.VideoPlayer.1.2.3.0\lib\Xamarin.iOS10\Octane.Xam.VideoPlayer.dll</HintPath>
+    </Reference>
+    <Reference Include="Octane.Xam.VideoPlayer.iOS, Version=1.2.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Octane.Xam.VideoPlayer.1.2.3.0\lib\Xamarin.iOS10\Octane.Xam.VideoPlayer.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Media, Version=2.6.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Xam.Plugin.Media.2.6.2\lib\Xamarin.iOS10\Plugin.Media.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Media.Abstractions, Version=2.6.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Xam.Plugin.Media.2.6.2\lib\Xamarin.iOS10\Plugin.Media.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings, Version=2.5.8.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.8\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions, Version=2.5.8.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.8\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Rg.Plugins.Popup.1.0.4\lib\Xamarin.IOS\Rg.Plugins.Popup.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup.IOS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Rg.Plugins.Popup.1.0.4\lib\Xamarin.IOS\Rg.Plugins.Popup.IOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup.Platform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Rg.Plugins.Popup.1.0.4\lib\Xamarin.IOS\Rg.Plugins.Popup.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.CarouselView, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Xamarin.Forms.CarouselView.2.3.0-pre2\lib\Xamarin.iOS10\Xamarin.Forms.CarouselView.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.247\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.247\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.iOS, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.247\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.247\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Core, Version=2.0.5782.12218, Culture=neutral, PublicKeyToken=d65109b36e5040e4">
+      <HintPath>..\..\packages\XLabs.Core.2.0.5782\lib\Xamarin.iOS10\XLabs.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Forms, Version=2.0.5782.12218, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\XLabs.Forms.2.0.5782\lib\Xamarin.iOS10\XLabs.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Forms.iOS, Version=2.0.5782.12247, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\XLabs.Forms.2.0.5782\lib\Xamarin.iOS10\XLabs.Forms.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Ioc, Version=2.0.5782.12218, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\XLabs.IoC.2.0.5782\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Ioc.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Platform, Version=2.0.5782.12218, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\XLabs.Platform.2.0.5782\lib\Xamarin.iOS10\XLabs.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Platform.iOS, Version=2.0.5782.12247, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\XLabs.Platform.2.0.5782\lib\Xamarin.iOS10\XLabs.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Serialization, Version=2.0.5782.15703, Culture=neutral, PublicKeyToken=d65109b36e5040e4">
+      <HintPath>..\..\packages\XLabs.Serialization.2.0.5782\lib\Xamarin.iOS10\XLabs.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <HintPath>..\..\packages\PresentationCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.FluentLayouts.Touch">
+      <HintPath>..\..\packages\Cirrious.FluentLayout.2.6.0\lib\Xamarin.iOS10\Cirrious.FluentLayouts.Touch.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\images.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MindCorners\MindCorners.csproj">
+      <Project>{DBBE9BE5-1B1F-4F63-91FE-6A455524AF90}</Project>
+      <Name>MindCorners</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MindCorners.Models\MindCorners.Models.csproj">
+      <Project>{67F9D3A8-F71E-4428-913F-C37AE82CDB24}</Project>
+      <Name>MindCorners.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\videoThumbnailIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioPause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioPlay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioPrompt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\backArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\checked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\checkmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\disabled_audioPrompt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\disabled_imagePrompt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\disabled_textPrompt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\disabled_videoPrompt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\group_Active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\group_Inactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\groupIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\homeScreen_Active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\homeScreen_Inactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\imagePrompt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\leftArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\magnifyingGlass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\microphone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\MindCorners.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\newPrompt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\noStories.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\notifications.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\replyBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\speechBubbleWithLines.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\textPrompt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\unchecked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\video.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\videoCamera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\videoPrompt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rubbish-bin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rubbish-bin%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rubbish-bin%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rubbish-bin%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rubbish-bin%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\NoReplies.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\NoReplies%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\NoReplies%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\NoReplies%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\NoReplies%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\groupIcon%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\groupIcon%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\groupIcon%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\groupIcon%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioPrompt%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioPrompt%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioPrompt%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioPrompt%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\backArrow%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\backArrow%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\backArrow%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\backArrow%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\imagePrompt%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\imagePrompt%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\imagePrompt%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\imagePrompt%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\textPrompt%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\textPrompt%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\textPrompt%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\textPrompt%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\videoPrompt%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\videoPrompt%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\videoPrompt%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\videoPrompt%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\magnifyingGlass%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\magnifyingGlass%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\notifications%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\notifications%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\notifications%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\notifications%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Profile%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Profile%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Profile%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Profile%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\group_Active%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\group_Active%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\group_Active%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\group_Active%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\homeScreen_Inactive%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\homeScreen_Inactive%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\homeScreen_Inactive%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\homeScreen_Inactive%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\magnifyingGlass%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\magnifyingGlass%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\magnifyingGlassSearchBar%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\magnifyingGlassSearchBar%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\magnifyingGlassSearchBar%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\magnifyingGlassSearchBar%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\searchbarClear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\searchbarClear%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\searchbarClear%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\searchbarClear%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\searchbarClear%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\magnifyingGlassSearchBar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\MindCorners%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\MindCorners%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\MindCorners%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\alertOk%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\alertOk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\alertOk%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\alertOk%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\alertOk%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ProfileBackgroun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ProfileBackgroun%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ProfileBackgroun%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ProfileBackgroun%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ProfileBackgroun%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rotateCamera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rotateCamera%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rotateCamera%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rotateCamera%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rotateCamera%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\takePicture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\takePicture%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\takePicture%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\takePicture%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\takePicture%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioPause%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioPause%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioPause%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioPlay%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioPlay%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioPlay%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioPlay%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioTint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioTint%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioTint%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioTint%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioTint%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioPause%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cameraGallary%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cameraGallary.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cameraGallary%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cameraGallary%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cameraGallary%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\flashOn%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\flashOn%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\flashOn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\flashOn%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\flashOn%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioRecordPause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioRecordPause%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioRecordPause%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioRecordPause%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioRecordPause%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioRecord.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioRecord%400,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioRecord%401,5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioRecord%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\audioRecord%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-568h%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-Portrait.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-Portrait%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
+  </Target>
+</Project>

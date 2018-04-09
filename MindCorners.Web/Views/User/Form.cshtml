@@ -1,0 +1,28 @@
+﻿@model MindCorners.Common.Model.Invitation
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Config Create/Edit";
+}
+
+<div class="container">
+    <div class="form-group">
+        @Html.Partial("Form/_FormHeader")
+    </div>
+    @using (Html.BeginForm(Model.Id != Guid.Empty ? "EditApplication" : "CreateInvitation", "User", new { id = Model.Id }, FormMethod.Post, new { id = "ApplicationForm" }))
+    {
+
+        @Html.HiddenFor(model => model.Id)
+        <div class="form-group">
+            @Html.LabelFor(model => model.RoleId)
+            @Html.DropDownListFor(model => model.RoleId, new SelectList(ViewBag.Roles, "Id", "Name", Model.RoleId), string.Empty, new {@class = "form-control"})
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.OrganizationId)
+            @Html.DropDownListFor(model => model.OrganizationId, new SelectList(ViewBag.Organizations, "Key", "Value", Model.OrganizationId), string.Empty, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email)
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        </div>
+    }
+</div>

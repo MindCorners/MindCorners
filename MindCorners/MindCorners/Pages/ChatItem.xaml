@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:userControls="clr-namespace:MindCorners.UserControls;assembly=MindCorners"
+             xmlns:converters="clr-namespace:MindCorners.Helpers.Converters;assembly=MindCorners"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             xmlns:chatMainAttachment="clr-namespace:MindCorners.CustomControls.ChatMainAttachment;assembly=MindCorners"
+             x:Class="MindCorners.Pages.ChatItem" ClassId="MindCorners.Pages.ChatItem"
+  NavigationPage.HasNavigationBar="false" >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BooleanToReverseConverter x:Key="BooleanToReverseConverter"/>
+            <customControls:ChatTypeDataTemplateSelector x:Key="ChatTypeDataTemplateSelector"></customControls:ChatTypeDataTemplateSelector>
+            <converters:AttachmentTypeToVisibilityConverter x:Key="attachmentTypeToVisibilityConverter"/>
+			<converters:ListViewRowCountToHeightConverter x:Key="ListViewRowCountToHeightConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="#E2E8F1" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand"  BackgroundColor="{StaticResource PageHeaderBackgroundColor}">
+                <Grid.Padding>
+                    <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" Android="0"/>
+                </Grid.Padding>
+                <Grid RowSpacing="0" Padding="0,5,0,5" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+						<RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Style="{StaticResource ImageButton}" Image="backArrow.png" HorizontalOptions="Start"  Grid.Column="0" Grid.Row="0" VerticalOptions="Center" Command="{Binding BackCommand}"></Button>
+                    <Label Text="{Binding EditingItem.Title}" TextColor="#FFF" FontSize="22"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" LineBreakMode="TailTruncation" HorizontalOptions="CenterAndExpand" />
+                    <StackLayout VerticalOptions="CenterAndExpand" Orientation="Horizontal" Grid.Row="2" HorizontalOptions="CenterAndExpand" Grid.ColumnSpan="3"  Grid.Column="0" Spacing="3">
+                        <Label LineBreakMode="TailTruncation" FormattedText="{Binding EditingItem.CustomFormattedTextForChatItem}" TextColor="#DAE7FD"  FontSize="14" />
+                    </StackLayout>
+                    <Button Style="{StaticResource ImageButton}" Image="rubbish-bin.png" 
+					Command="{Binding DeletePromptCommand}" HorizontalOptions="End" 
+					Grid.Column="2" Grid.Row="0"  VerticalOptions="Center" IsVisible="{Binding CanDeletePost}"/>
+                        
+                </Grid>
+                <!--
+                <Grid RowSpacing="0" Padding="0,5,0,5" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Style="{StaticResource ImageButton}" Image="backArrow.png" HorizontalOptions="Start"  Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" VerticalOptions="Center" Command="{Binding BackCommand}"></Button>
+                    <Label Text="{Binding EditingItem.Title}" TextColor="#FFF" FontSize="18"  Grid.Row="0" Grid.Column="1" LineBreakMode="TailTruncation" />
+                    <StackLayout VerticalOptions="CenterAndExpand" Orientation="Horizontal" Grid.Row="1" HorizontalOptions="Start" Grid.Column="1"  Spacing="3">
+                        <Label LineBreakMode="TailTruncation" FormattedText="{Binding EditingItem.CustomFormattedTextForChatItem}" TextColor="#DAE7FD"  FontSize="14" />
+                    </StackLayout>
+                    <Button Style="{StaticResource ImageButton}" Image="rubbish-bin.png" Command="{Binding DeletePromptCommand}" HorizontalOptions="End" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" VerticalOptions="Center" IsVisible="{Binding CanDeletePost}"/>
+                        
+                </Grid>
+				<customControls:GradientContentView  Orientation="Horizontal" StartColor="#9A81F8" EndColor="#A470FF"></customControls:GradientContentView>-->
+            </Grid>
+
+
+            <Grid Grid.Row="1" IsVisible="{Binding IsEmptyChat}">
+               <!--- <Grid.RowDefinitions>
+                    <RowDefinition Height="250"/>
+                    <RowDefinition  Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <ListView WidthRequest="250"
+                          IsVisible="{Binding IsEmptyChat}"
+                      HorizontalOptions="FillAndExpand"
+                    ItemsSource="{Binding Replies}"
+                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                    SeparatorVisibility="None"
+                    HasUnevenRows="True"
+                      BackgroundColor="Transparent"
+                      ItemTemplate="{StaticResource ChatTypeDataTemplateSelector}" >
+                </ListView>-->
+                <Grid Grid.Row="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Spacing="30">
+                        <Image HorizontalOptions="CenterAndExpand" Aspect="AspectFit" Source="NoReplies.png"/>
+                        <Label Text="Share your Memories" HorizontalOptions="CenterAndExpand" TextColor="#ABBDDC"  FontSize="20"></Label>
+                        <!--<Label Text="Some text" HorizontalOptions="CenterAndExpand" TextColor="#ABBDDC"  FontSize="16"></Label>-->
+                    </StackLayout>
+                </Grid>
+
+            </Grid>
+            <Grid Grid.Row="1" IsVisible="{Binding HasNoReplies}">
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+               <!--<ListView
+					x:Name="PropmtPostItem"
+                      HorizontalOptions="FillAndExpand"
+                    ItemsSource="{Binding Replies}"
+                    SeparatorVisibility="None"
+                    HasUnevenRows="True"
+                      BackgroundColor="Transparent"
+                      ItemTemplate="{StaticResource ChatTypeDataTemplateSelector}" >
+                </ListView>-->
+
+				<StackLayout Orientation="Vertical" Spacing="0">
+                          
+                            <chatMainAttachment:TextMainAttachmentTemplateGrid HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" BindingContext="{Binding EditingItem}"  IsVisible="{Binding MainAttachment.Type, Converter={StaticResource attachmentTypeToVisibilityConverter}, ConverterParameter=0}"  />
+                            <chatMainAttachment:ImageMainAttachmentTemplateGrid HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" BindingContext="{Binding EditingItem}" IsVisible="{Binding MainAttachment.Type, Converter={StaticResource attachmentTypeToVisibilityConverter}, ConverterParameter=1}" />
+                            <chatMainAttachment:AudioMainAttachmentTemplateGrid HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" BindingContext="{Binding EditingItem}" IsVisible="{Binding MainAttachment.Type, Converter={StaticResource attachmentTypeToVisibilityConverter}, ConverterParameter=2}" />
+                            <chatMainAttachment:VideoMainAttachmentTemplateGrid HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" BindingContext="{Binding EditingItem}" IsVisible="{Binding MainAttachment.Type, Converter={StaticResource attachmentTypeToVisibilityConverter}, ConverterParameter=3}" />
+                        </StackLayout>
+				
+                <Grid Grid.Row="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="5">
+                        <Image HorizontalOptions="CenterAndExpand" Aspect="AspectFit" Source="readyToReply.png" Margin="0,10,0,10"/>
+                        <Label Text="Ready to reply?" HorizontalOptions="CenterAndExpand" TextColor="#ABBDDC"  FontSize="20"></Label>
+                        <Label Text="Select one or more of the" HorizontalOptions="CenterAndExpand" TextColor="#ABBDDC"  FontSize="16"></Label>
+						<Label Text="formats below" HorizontalOptions="CenterAndExpand" TextColor="#ABBDDC"  FontSize="16"></Label>
+                    </StackLayout>
+                </Grid>
+
+            </Grid>
+
+            <!--<customControls:CustomFrame VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0" HasShadow="True" ShadowColor="#1D000000" ShadowOffsetY="1" ShadowRadius="2" IsVisible="{Binding IsNew, Converter={StaticResource BooleanToReverseConverter}}">
+                        <StackLayout Orientation="Vertical" BackgroundColor="{StaticResource ChatItemAttachmentBackGroundColor}" Padding="10" >
+                          
+                            <chatMainAttachment:TextMainAttachmentTemplate HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" BindingContext="{Binding EditingItem}"  IsVisible="{Binding MainAttachment.Type, Converter={StaticResource attachmentTypeToVisibilityConverter}, ConverterParameter=0}"  />
+                            <chatMainAttachment:ImageMainAttachmentTemplate HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" BindingContext="{Binding EditingItem}" IsVisible="{Binding MainAttachment.Type, Converter={StaticResource attachmentTypeToVisibilityConverter}, ConverterParameter=1}" />
+                            <chatMainAttachment:AudioMainAttachmentTemplate HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" BindingContext="{Binding EditingItem}" IsVisible="{Binding MainAttachment.Type, Converter={StaticResource attachmentTypeToVisibilityConverter}, ConverterParameter=2}" />
+                            <chatMainAttachment:VideoMainAttachmentTemplate HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" BindingContext="{Binding EditingItem}" IsVisible="{Binding MainAttachment.Type, Converter={StaticResource attachmentTypeToVisibilityConverter}, ConverterParameter=3}" />
+                        </StackLayout>
+                    </customControls:CustomFrame>-->
+
+            <customControls:InfiniteListView x:Name="ListViewCircles" CanLoadMore="False"
+                              
+                              Grid.Row="1"
+                    IsVisible="{Binding HasNoReplies, Converter={StaticResource BooleanToReverseConverter}}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    ItemsSource="{Binding Replies}"
+                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                    SeparatorVisibility="None"
+                    HasUnevenRows="True"
+                              BackgroundColor="Transparent"
+                    ItemTemplate="{StaticResource ChatTypeDataTemplateSelector}" >
+
+            </customControls:InfiniteListView>
+
+            <ActivityIndicator
+             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                           IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}" Grid.Row="1" />
+
+
+            <!--<ScrollView HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand" Grid.Row="1">
+
+                
+                <Grid RowSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                </Grid>
+            </ScrollView>-->
+            <!--<ListView.ItemTemplate>
+              <DataTemplate>
+                <ViewCell>
+                  <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" Padding="15,5,5,15">
+                    <Label Text="{Binding Title}" HorizontalOptions="Start"></Label>
+                    <Label Text="{Binding  MainAttachment.Text}" HorizontalOptions="CenterAndExpand"></Label>
+                    <Label Text="{Binding MainAttachment.FilePath}" HorizontalOptions="CenterAndExpand"></Label>
+                    <Image Source="{Binding  MainAttachment.FileUrl}" HorizontalOptions="CenterAndExpand" WidthRequest="100" Aspect="AspectFit" HeightRequest="100" ></Image>
+                    <Image Source="{Binding  MainAttachment.FileThumbnailUrl}" HorizontalOptions="CenterAndExpand" WidthRequest="100" Aspect="AspectFit" HeightRequest="100" ></Image>
+                  </StackLayout>
+                </ViewCell>
+              </DataTemplate>
+            </ListView.ItemTemplate>
+                    
+                    <StackLayout  Grid.Row="2"  HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand" Margin="0,10,0,0">
+
+                    <Label FontSize="Large" Text="Share your Memories" IsVisible="{Binding IsEmptyChat}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label>
+                    </StackLayout>
+                    -->
+
+            <customControls:CustomFrame  VerticalOptions="FillAndExpand"
+                                         Padding="10"
+                 HorizontalOptions="FillAndExpand" Grid.Row="2"  BackgroundColor="#FFF"  IsVisible="{Binding CanReply, Converter={StaticResource BooleanToReverseConverter}}" HasShadow="True" ShadowOffsetX="0" ShadowOffsetY="-2" ShadowRadius="2" ShadowColor="#07000000">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Image="textPrompt.png" Command="{Binding CreatePostCommand}" BackgroundColor="Transparent" CommandParameter="0" />
+                    <Button Image="imagePrompt.png" Grid.Column ="1" Command="{Binding CreatePostCommand}" BackgroundColor="Transparent" CommandParameter="1"/>
+                    <Button Image="audioPrompt.png" Grid.Column ="2" Command="{Binding CreatePostCommand}" BackgroundColor="Transparent" CommandParameter="2"/>
+                    <Button Image="videoPrompt.png" Grid.Column ="3" Command="{Binding CreatePostCommand}" BackgroundColor="Transparent" CommandParameter="3"/>
+                </Grid>
+            </customControls:CustomFrame>
+
+            <!--<Button Text="Relpy" Command="{Binding ReplyCommand}" Grid.Row="3" IsVisible="{Binding CanReply}"></Button>-->
+
+            <customControls:CustomFrame  
+                VerticalOptions="EndAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Padding="10" 
+                Grid.Row="2"  
+                BackgroundColor="#FFF"  
+                IsVisible="{Binding CanReply}" 
+                HasShadow="True" 
+                ShadowOffsetX="0" 
+                ShadowOffsetY="-2"
+                ShadowRadius="2" 
+                ShadowColor="#07000000">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Image="textPrompt.png" Command="{Binding CreatePostCommand}" BackgroundColor="Transparent" CommandParameter="0" />
+                    <Button Image="imagePrompt.png" Grid.Column ="1" Command="{Binding CreatePostCommand}" BackgroundColor="Transparent" CommandParameter="1"/>
+                    <Button Image="audioPrompt.png" Grid.Column ="2" Command="{Binding CreatePostCommand}" BackgroundColor="Transparent" CommandParameter="2"/>
+                    <Button Image="videoPrompt.png" Grid.Column ="3" Command="{Binding CreatePostCommand}" BackgroundColor="Transparent" CommandParameter="3"/>
+                </Grid>
+            </customControls:CustomFrame>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

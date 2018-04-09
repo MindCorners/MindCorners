@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+
+namespace MindCorners.Helpers.Converters
+{
+    //public class ManyStringsToStringFormatConverter : IMultiValueConverter
+    //{
+    //}
+
+    //public interface IMultiValueConverter
+    //{
+    //    object Convert(object[] values, Type targetType, object parameter, CultureInfo culture);
+    //}
+}

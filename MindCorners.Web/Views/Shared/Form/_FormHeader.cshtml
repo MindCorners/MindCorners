@@ -1,0 +1,27 @@
+﻿<div>
+    <button class="btn btn-primary" onclick="save(false)" type="submit">Save</button>
+    <button class="btn btn-warning" onclick="save(true)">Save and Close</button>
+    <button class="btn btn-danger" onclick="location.href = '@Url.Action("Index")'">Cancel</button>
+</div>
+
+
+<script type="text/javascript">
+    function save(close) {
+        Effects.Loading.show();
+        var form = $(document.getElementById("ApplicationForm"));
+        if (close) {
+            var hidden = document.createElement('input');
+            hidden.type = 'hidden';
+            hidden.name = 'close';
+            hidden.value = true;
+            form.append(hidden);
+        }
+        form.submit();
+        Effects.Loading.hide();
+        //if (form.valid()) {
+           
+        //} else {
+            
+        //}
+    }
+</script>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:userControls="clr-namespace:MindCorners.UserControls;assembly=MindCorners"
+             xmlns:converters="clr-namespace:MindCorners.Helpers.Converters;assembly=MindCorners"
+             xmlns:behaviors="clr-namespace:MindCorners.Behaviors;assembly=MindCorners"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             x:Class="MindCorners.Pages.PromptItem" ClassId="MindCorners.Pages.PromptItem"
+             NavigationPage.HasNavigationBar="false">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <converters:BooleanToColorConverter TrueValue="#87F2CA" FalseValue="Transparent" x:Key="booleanToColorConverter"/>
+            <converters:ListViewRowCountToHeightConverter x:Key="ListViewRowCountToHeightConverter"/>
+            <converters:BooleanToCheckBoxImageConverter x:Key="BooleanToCheckBoxImageConverter" TrueImage="checked.png" FalseImage="unchecked.png" />
+            <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
+            <converters:BooleanToImageConverter x:Key="BooleanToImageConverter" DisabledPrefix="disabled_" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+                <!---<Button Grid.Row="1"  Text="Create" Command="{Binding CreatePromptCommand}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Style="{StaticResource GreenButton}" Margin="20,10,20,20" IsVisible="{Binding CanCreatePrompt}"/>-->
+            <userControls:HeaderInnerPages PageTitle="CREATE PROMPT" ShowSearchButton="False" ShowSendButton="true" CanSend="{Binding CanCreatePrompt}" SendButtonText="Create"  SendButtonCommand="{Binding CreatePromptCommand}" />
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        </Grid.RowDefinitions>
+                    <customControls:CustomContentView CornerRadius="9" BorderWidth="1" BorderColor="#D3D1E5" Padding="9" Margin="10">
+                        <customControls:CustomEntry  Placeholder="Enter Prompt Title" Text="{Binding PromptTitle}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BorderColor="Transparent" x:Name="TitleEntry"/>
+                        <!--<customControls:CustomEntry Placeholder="Enter Prompt Title" Text="{Binding PromptTitle}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BorderColor="Transparent"/>-->
+                        
+                    </customControls:CustomContentView>
+                    <!--<Frame CornerRadius="8" BackgroundColor="#D5D3E6" Padding="1" HasShadow="False">
+                        <Frame CornerRadius="8" BackgroundColor="#FFF" HasShadow="False" Padding="10">
+                            
+                        </Frame>
+                    </Frame>-->
+
+                    <ScrollView Grid.Row="1" Padding="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition  Height="1"/>
+                                <RowDefinition  Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition  Height="1"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Text="CHOOSE CIRCLE" Style="{StaticResource LatoBlackLabel}" TextColor="#8DB0EA" FontSize="13" IsVisible="{Binding Circles.Count, Converter={StaticResource CountToVisibilityConverter}}" Margin="20,10,20,10"/>
+                            <BoxView Color="#E2E8F1" Grid.Row="1" />
+                            <ListView x:Name="ListViewCircles"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="Start"
+                      ItemsSource="{Binding Circles}"
+                      SelectedItem="{Binding SelectedCircle, Mode=TwoWay}" 
+                                      SeparatorVisibility="None"
+                      HasUnevenRows="True"
+                                  Grid.Row="2"
+                                  RowHeight="70"
+                                  HeightRequest="{Binding Path=BindingContext.Circles.Count, Source={x:Reference Name=ListViewCircles}, ConverterParameter=70, Converter={StaticResource ListViewRowCountToHeightConverter}}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition Height="1"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid HorizontalOptions="FillAndExpand" Padding="15,5,5,15" Grid.Row="0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50"/>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <!--<abstractions:CircleImage
+                   WidthRequest="40"
+                   HeightRequest="40"
+                   Aspect="AspectFit"
+                   Source="groupIcon.png"
+                   VerticalOptions="Center"
+                  HorizontalOptions="Center"
+                   BorderColor="#8DB0EA" BorderThickness="3" Grid.Column="0"/>-->
+
+
+                                                    <Image  WidthRequest="40"
+                                                            HeightRequest="40"
+                                                            Aspect="AspectFill"
+                                                            Source="groupIcon.png"
+                                                            VerticalOptions="Center"
+                                                            HorizontalOptions="Center"/>
+                                                    <Label Text="{Binding Name}" HorizontalOptions="Start" Grid.Column="1" VerticalOptions="CenterAndExpand" Style="{StaticResource LatoSemiboldLabel}"></Label>
+                                                    <Image Source="{Binding IsSelected, Converter={StaticResource BooleanToCheckBoxImageConverter}}" HorizontalOptions="End" Aspect="AspectFit" Grid.Column="2"/>
+                                                </Grid>
+                                                <BoxView Color="#E2E8F1" Grid.Row="1" />
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+							<StackLayout Orientation="Horizontal" Grid.Row="3" Margin="20,18,20,10">
+								<Label IsVisible="{Binding Circles.Count, Converter={StaticResource CountToVisibilityConverter}}" Text="OR " Style="{StaticResource LatoBlackLabel}" TextColor="#8DB0EA" FontSize="13"/>
+								<Label Grid.Row="3" Text="CHOOSE CONTACT" Style="{StaticResource LatoBlackLabel}" TextColor="#8DB0EA" FontSize="13"/>
+							</StackLayout>
+                            
+                            <BoxView Color="#E2E8F1" Grid.Row="4" />
+
+                            <ListView x:Name="ListViewContacts"
+                          Grid.Row="5"
+                          ItemsSource="{Binding Contacts}"
+                          SelectedItem="{Binding SelectedContact, Mode=TwoWay}" 
+                          HasUnevenRows="True" VerticalOptions="FillAndExpand"
+                                    RowHeight="70"
+                                     SeparatorVisibility="None"
+                                  HeightRequest="{Binding Path=BindingContext.Contacts.Count, Source={x:Reference Name=ListViewContacts}, ConverterParameter=70, Converter={StaticResource ListViewRowCountToHeightConverter}}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition Height="1"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid HorizontalOptions="FillAndExpand" Padding="15,5,5,15">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50"/>
+                                                        <ColumnDefinition />
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <abstractions:CircleImage
+                   WidthRequest="40"
+                   HeightRequest="40"
+                   Aspect="AspectFill"
+                   Source="{Binding ProfileImageString}"
+                   VerticalOptions="Center"
+                  HorizontalOptions="Center"
+                   BorderColor="#8DB0EA" BorderThickness="3" Grid.Column="0"/>
+                                                    <Label Text="{Binding FullName}"  HorizontalOptions="StartAndExpand" Grid.Column="1" VerticalOptions="CenterAndExpand" Style="{StaticResource LatoSemiboldLabel}" ></Label>
+                                                    <Image Source="{Binding IsSelected, Converter={StaticResource BooleanToCheckBoxImageConverter}}" HorizontalOptions="End" Aspect="AspectFit" Grid.Column="2"/>
+                                                </Grid>
+                                                <BoxView Color="#E2E8F1" Grid.Row="1" />
+                                            </Grid>
+                                            
+                                            
+                                            
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <!--<Button Text="Create" VerticalOptions="End" HorizontalOptions="FillAndExpand" Command="{Binding CreatePromptCommand}"></Button>-->
+                        </Grid>
+                    </ScrollView>
+                </Grid>
+
+                <!--<Grid VerticalOptions="EndAndExpand"
+                 HorizontalOptions="FillAndExpand" Grid.Row="1" BackgroundColor="#FFF">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Image="{Binding CanCreatePrompt, Converter={StaticResource BooleanToImageConverter}, ConverterParameter=textPrompt.png}" Command="{Binding CreatePostCommand}" BackgroundColor="Transparent" CommandParameter="0" IsEnabled="{Binding CanCreatePrompt}"/>
+                    <Button Image="{Binding CanCreatePrompt, Converter={StaticResource BooleanToImageConverter}, ConverterParameter=imagePrompt.png}" Grid.Column ="1" Command="{Binding CreatePostCommand}" BackgroundColor="Transparent" CommandParameter="1"  IsEnabled="{Binding CanCreatePrompt}"/>
+                    <Button Image="{Binding CanCreatePrompt, Converter={StaticResource BooleanToImageConverter}, ConverterParameter=audioPrompt.png}" Grid.Column ="2" Command="{Binding CreatePostCommand}" BackgroundColor="Transparent" CommandParameter="2"  IsEnabled="{Binding CanCreatePrompt}"/>
+                    <Button Image="{Binding CanCreatePrompt, Converter={StaticResource BooleanToImageConverter}, ConverterParameter=videoPrompt.png}" Grid.Column ="3" Command="{Binding CreatePostCommand}" BackgroundColor="Transparent" CommandParameter="3" IsEnabled="{Binding CanCreatePrompt}"/>
+                </Grid>-->
+
+                <!--<Button Grid.Row="1"  Text="Create" Command="{Binding CreatePromptCommand}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Style="{StaticResource GreenButton}" Margin="20,10,20,20" IsVisible="{Binding CanCreatePrompt}"/>-->
+            </Grid>
+            
+
+        </Grid>
+
+
+        
+      
+      
+      
+     
+     
+      <!--<ScrollView>
+        <StackLayout>
+          <Label Text="Choose Circle"></Label>
+          <ListView x:Name="ListViewCircles"
+                          HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand"
+                          ItemsSource="{Binding Circles}"
+                          HasUnevenRows="True"
+                          SelectedItem="{Binding SelectedCircle, Mode=TwoWay}"
+                          RowHeight="60">
+            <ListView.ItemTemplate>
+              <DataTemplate>
+                <ViewCell>
+                  <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" Padding="15,5,5,15"  BackgroundColor="{Binding IsSelected, Converter={StaticResource booleanToColorConverter}}">
+               
+                 <customControls:ImageCircle
+                   MinimumWidthRequest="50"
+                   MinimumHeightRequest="50"
+                   Aspect="AspectFill"
+                   Source="{Binding ProfileImageString}"
+                   VerticalOptions="FillAndExpand"
+                  HorizontalOptions="StartAndExpand"
+                   BorderColor="#EFEEFE"/>
+                      
+                                        <Label Text="{Binding Name}" HorizontalOptions="Start"></Label>
+                    <Image IsVisible="{Binding IsSelected}" Source="checkmark.png" HorizontalOptions="End" Aspect="AspectFit" WidthRequest="16"></Image>
+                  </StackLayout>
+                </ViewCell>
+              </DataTemplate>
+            </ListView.ItemTemplate>
+          </ListView>
+          <Label Text="Choose Contact"></Label>
+          <ListView x:Name="ListViewContacts"
+           ItemsSource="{Binding Contacts}"
+            SelectedItem="{Binding SelectedContact, Mode=TwoWay}" HasUnevenRows="True" VerticalOptions="FillAndExpand">
+            <ListView.ItemTemplate>
+              <DataTemplate>
+                <ViewCell>
+                  <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" Padding="15,5,5,15"  BackgroundColor="{Binding IsSelected, Converter={StaticResource booleanToColorConverter}}">
+                    <Label Text="{Binding FullName}"  HorizontalOptions="StartAndExpand"></Label>
+                    <Image IsVisible="{Binding IsSelected}" Source="checkmark.png" HorizontalOptions="End" Aspect="AspectFit" WidthRequest="16"></Image>
+                  </StackLayout>
+                </ViewCell>
+              </DataTemplate>
+            </ListView.ItemTemplate>
+          </ListView>
+        </StackLayout>
+      </ScrollView>-->
+
+        <!--<StackLayout Orientation="Vertical"></StackLayout>-->
+  </ContentPage.Content>
+</ContentPage>

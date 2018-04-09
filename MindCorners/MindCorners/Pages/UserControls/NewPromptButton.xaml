@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             x:Class="MindCorners.Pages.UserControls.NewPromptButton">
+
+    <!--<customControls:CircleButton x:Name="BtnAddNewPropmt" TextColor="#FFF" Image="chat.png"  FontSize="Large" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand"  BackgroundColor="#77BE03"  Clicked="BtnAddNewPropmt_OnClicked" Grid.Row="0" Grid.RowSpan="2"></customControls:CircleButton>-->
+
+    <Image Source="newPrompt.png" Aspect="AspectFit" Margin="5" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" >
+       <Image.GestureRecognizers>
+            <TapGestureRecognizer Tapped="BtnAddNewPropmt_OnClicked"/>
+       </Image.GestureRecognizers> 
+    </Image>
+    <!--<customControls:CircleButton Margin="5" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand"  BackgroundColor="#FFF" Text="">
+
+    </customControls:CircleButton>
+
+    <customControls:CircleButton x:Name="BtnAddNewPropmt" CircleBorderColor="#FFF" CircleBorderWidth="5" TextColor="#FFF"   FontSize="Large" Margin="10" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand"  BackgroundColor="#95BB6B"  Clicked="BtnAddNewPropmt_OnClicked" >
+        <customControls:CircleButton.FontFamily>
+            <OnPlatform x:TypeArguments="x:String">
+                <OnPlatform.iOS>Blue Fires Sample</OnPlatform.iOS>
+                <OnPlatform.Android>bluefires_sample.ttf#Blue Fires Sample</OnPlatform.Android>
+            </OnPlatform>
+        </customControls:CircleButton.FontFamily>
+
+    </customControls:CircleButton>
+    <Label  TextColor="#FFF" Text="New Prompt" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="10"   FontSize="Large" LineBreakMode="WordWrap"  WidthRequest="70">
+        <Label.FontFamily>
+            <OnPlatform x:TypeArguments="x:String">
+                <OnPlatform.iOS>Blue Fires Sample</OnPlatform.iOS>
+                <OnPlatform.Android>bluefires_sample.ttf#Blue Fires Sample</OnPlatform.Android>
+            </OnPlatform>
+        </Label.FontFamily>
+    </Label>-->
+</Grid>

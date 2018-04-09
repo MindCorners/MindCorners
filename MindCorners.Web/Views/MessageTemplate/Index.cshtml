@@ -1,0 +1,35 @@
+﻿@using MindCorners.Web.Models
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Message Templates";
+}
+@*@section JavaScript
+{
+    <script src="@Url.Content("~/Scripts/CustomLibraries/DevexpressHelper.js")" type="text/javascript"></script>
+}*@
+<!-- Grid -->
+
+<div class="divApplicationList">
+    <div class="grid-operation-menu grid-operation-menu-geo" id="gridOperationMenu">
+    </div>
+    @*<div class="grid-state-links">
+        @Html.Partial("List/UserControls/_GridStateLinks")
+    </div>*@
+    <script type="text/html" id="gridOperationLinksTemplate">
+      @Html.Raw(Html.Partial("List/_GridOperations", new ListControlModel()).ToHtmlString())
+    </script>
+</div>
+<div class="divApplicationList">
+    @Html.Action("AdvancedCustomBindingPartial", "MessageTemplate", new { gridViewName = "gvMessageTemplate", listPartial = "_List" })
+</div>
+<script language="javascript" type="text/javascript">
+
+    $(function () {
+        $('.module-switch-link').click(function () {
+            var self = $(this);
+            $('.module-switch-link').removeClass('module-switch-link-active');
+            self.addClass('module-switch-link-active');
+        });
+    });
+</script>
+

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MindCorners.Pages.Profile"
+             xmlns:controls="clr-namespace:Easterapps.Xamarin.Forms.Controls;assembly=MindCorners"
+             xmlns:converters="clr-namespace:MindCorners.Helpers.Converters;assembly=MindCorners"
+             xmlns:userControls="clr-namespace:MindCorners.UserControls;assembly=MindCorners"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             Title="Profile"
+             NavigationPage.HasNavigationBar="false" ClassId="MindCorners.Pages.Profile">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <converters:ConverterBase64ImageSource x:Key="Base64ToImageConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <!--<ContentPage.Padding>
+    <OnPlatform x:TypeArguments="Thickness"
+                iOS="20, 40, 20, 20"
+                Android="20, 20, 20, 20"
+                WinPhone="20, 20, 20, 20" />
+  </ContentPage.Padding>-->
+    <ContentPage.Content>
+
+        <customControls:GradientContentView  StartColor="#8DB0EA" EndColor="#5C93EF"  Orientation="Horizontal" StartPointX="0.96" StartPointY="0.04" EndPointX="0.05" EndPointY="0.65">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                <Image Source="ProfileBackgroun.png" Grid.RowSpan="2" Grid.Row="0" Margin="0,30,0,50" Aspect="AspectFill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                <userControls:HeaderInnerPages AnimationDirection="LeftToRight" PageTitle="PROFILE" ShowSearchButton="False" BackgroundColor="Transparent" Grid.Row="0"/>
+                    <Grid Grid.Row="1" Padding="20">
+                        <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="7*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <StackLayout VerticalOptions="StartAndExpand"
+                   HorizontalOptions="CenterAndExpand"   Spacing="10" Grid.Row="1"
+                   Orientation="Vertical">
+                            <abstractions:CircleImage Aspect="AspectFill"
+                                                                            Source="{Binding CurrentUserLocal.ProfileImageString}" 
+                                                                             BorderColor="#BECDF6" 
+                                                                            BorderThickness="3" 
+                                                                            WidthRequest="110"
+                                                                            HeightRequest="110" 
+                                                                              VerticalOptions="CenterAndExpand"
+                                                                              HorizontalOptions="CenterAndExpand">
+                                <abstractions:CircleImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ImgProfileImage_OnClicked"/>
+                                </abstractions:CircleImage.GestureRecognizers>
+                            </abstractions:CircleImage>
+                            <!--<Grid VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" >
+                            
+                            
+                            
+                            <Image Source="{Binding ProfileImageString}"  Aspect="AspectFit" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.RowSpan="2">
+                                <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ImgProfileImage_OnClicked"/>
+                            </Image.GestureRecognizers>
+                            </Image>-->
+                            <!--<Button Text="Edit" VerticalOptions="Start" HorizontalOptions="End" Clicked="ImgProfileImage_OnClicked" BackgroundColor="#95BB6B"/>
+                        </Grid>-->
+                            <Label Text="{Binding CurrentUserLocal.FullName}" FontSize="22" HorizontalOptions="CenterAndExpand" TextColor="#FFF"></Label>
+                            <Label Text="{Binding CurrentUserLocal.Email}" FontSize="16" HorizontalOptions="CenterAndExpand" TextColor="#FFF"></Label>
+                        </StackLayout>
+                        <Button Grid.Row="2" x:Name="BtnLogout" Text="Log Out" VerticalOptions="EndAndExpand"  HorizontalOptions="FillAndExpand" Clicked="OnLogOutClick" Style="{StaticResource WhiteButton}"></Button>
+                    </Grid>
+                </Grid>
+        </customControls:GradientContentView>
+        <!--<Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition Height="6*"/>
+        <RowDefinition/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <StackLayout VerticalOptions="FillAndExpand"
+                   HorizontalOptions="FillAndExpand"
+                   Orientation="Vertical"
+                   Spacing="15" Grid.Row="1">
+                <Image  x:Name="ImgProfileImage" Source="{Binding ProfileImageString}" WidthRequest="100" HeightRequest="100" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ImgProfileImage_OnClicked"/>
+                    </Image.GestureRecognizers>
+                </Image>
+        <Label Text="{Binding FullName}" FontSize="Large" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"></Label>
+        <Label Text="{Binding Email}"  HorizontalOptions="CenterAndExpand" FontAttributes="Bold"></Label>
+      </StackLayout>
+
+      <Button Grid.Row="3" x:Name="BtnLogout" Text="Log Out"  HorizontalOptions="FillAndExpand" Clicked="OnLogOutClick"></Button>
+    </Grid>-->
+
+  </ContentPage.Content>
+
+
+</ContentPage>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:userControls="clr-namespace:MindCorners.UserControls;assembly=MindCorners"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             xmlns:behaviors="clr-namespace:MindCorners.Behaviors;assembly=MindCorners"
+             x:Class="MindCorners.Pages.InviteContact"
+             Title="Invite Contact"
+             NavigationPage.HasNavigationBar="false">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <userControls:HeaderInnerPages PageTitle="NEW INVITATION" ShowSearchButton="False" ShowSendButton="true" CanSend="{Binding CanSend}" SendButtonCommand="{Binding CreateInvitationCommand}" SendButtonText="Send"/>
+        <Grid Grid.Row="1" Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <customControls:CustomContentView CornerRadius="9" BorderWidth="1" BorderColor="#D3D1E5" Padding="9" Margin="10">
+                <customControls:CustomEntry BorderColor="Transparent" Text="{Binding Email}" VerticalOptions="Start" Keyboard="Email" Placeholder="Enter contact email">
+                        <!--<Entry.Behaviors>
+                            <behaviors:EmailValidatorBehavior x:Name="emailValid" />
+                            <behaviors:RequiredValidatorBehavior  x:Name="requiredEmail"/>
+                        </Entry.Behaviors>-->
+                    </customControls:CustomEntry>
+            </customControls:CustomContentView>
+            <!---<Button Grid.Row="1"  Margin="10" Text="Send Invitation" Command="{Binding CreateInvitationCommand}" HorizontalOptions="FillAndExpand"  VerticalOptions="EndAndExpand" Style="{StaticResource GreenButton}" IsVisible="{Binding CanSend}"/>-->
+        </Grid>
+
+			 <ActivityIndicator 
+             VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                           IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}" Grid.Row="0" Grid.RowSpan="2"/>
+    </Grid>
+
+
+    <!--<StackLayout>
+    <StackLayout VerticalOptions="CenterAndExpand">
+      <Label Text="Invitation to circle" VerticalOptions="Start"></Label>
+      <Entry Text="{Binding Email}" VerticalOptions="Start"></Entry>
+    </StackLayout>
+    <StackLayout>
+      <Button Command="{Binding CreateInvitationCommand}" Text="Send"  HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
+    </StackLayout>
+  </StackLayout>-->
+</ContentPage>

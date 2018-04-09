@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             xmlns:promptTemplates="clr-namespace:MindCorners.Pages.PromptTemplates;assembly=MindCorners"
+             x:Class="MindCorners.CustomControls.ChatMainAttachment.ImageMainAttachmentTemplate">
+    <customControls:CustomFrame VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0" HasShadow="True" ShadowColor="#1D000000" ShadowOffsetY="1" ShadowRadius="2">
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  BackgroundColor="{StaticResource ChatItemAttachmentBackGroundColor}" Padding="10" >
+            <Image Source="{Binding  MainAttachment.FileUrl}" HorizontalOptions="FillAndExpand"  VerticalOptions="Start" Aspect="AspectFill" HeightRequest="200">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"
+                CommandParameter="{Binding MainAttachment}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+    </customControls:CustomFrame>
+</ViewCell>

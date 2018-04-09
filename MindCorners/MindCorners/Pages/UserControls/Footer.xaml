@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:abstractions="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
+      xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+      xmlns:userControls="clr-namespace:MindCorners.Pages.UserControls;assembly=MindCorners"
+      x:Class="MindCorners.UserControls.Footer"
+      VerticalOptions="FillAndExpand"
+                   HorizontalOptions="FillAndExpand" Padding="0,5" HeightRequest="100"  BackgroundColor="Transparent">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="3*"/>
+        <RowDefinition Height="7*"/>
+    </Grid.RowDefinitions>
+    <customControls:CustomFrame  Grid.Row="1"   HasShadow="True" Padding="0" VerticalOptions="FillAndExpand" ShadowColor="#07000000" ShadowOffsetY="-2" ShadowRadius="2" >
+        <Grid RowSpacing="0" ColumnSpacing="0"  BackgroundColor="#FFF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="BtnHome"  HorizontalOptions="CenterAndExpand" Clicked="BtnHome_OnClicked" Image="homeScreen_Active.png" BorderColor="Transparent" BackgroundColor="Transparent"  Grid.ColumnSpan="2"/>
+        <BoxView BackgroundColor="#8DB0EA" HeightRequest="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="0"   Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Button x:Name="BtnContacts"  Image="group_Inactive.png" Grid.Column="3"  Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2" HorizontalOptions="CenterAndExpand" Clicked="BtnContacts_OnClicked" VerticalOptions="FillAndExpand" BorderColor="Transparent" BackgroundColor="Transparent"/>
+    </Grid>
+        </customControls:CustomFrame>
+    <userControls:NewPromptButton  Grid.Row="0" Grid.RowSpan="2" HorizontalOptions="Center" VerticalOptions="Center"/>
+    <!--<abstractions:CircleButton x:Name="BtnAddNewPropmt"  TextColor="#FFF"   FontSize="30" HeightRequest="70" WidthRequest="70"  Text="Prompt" BackgroundColor="#77BE03" HorizontalOptions="CenterAndExpand" Clicked="BtnAddNewPropmt_OnClicked" Grid.Row="0" Grid.RowSpan="2" />-->
+</Grid>
+
+
+
+
+    

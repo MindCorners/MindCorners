@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MindCorners.Pages.VideoPreview"
+             xmlns:forms="clr-namespace:InTheHand.Forms;assembly=InTheHand.Forms"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             xmlns:pages="clr-namespace:MindCorners.Pages;assembly=MindCorners" BackgroundColor="Black">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Image="close.png" Style="{StaticResource ImageButton}" Grid.Column="1" HorizontalOptions="EndAndExpand" Clicked="Button_OnClicked" Margin="10,10" />
+        <customControls:CustomVideoPlayer FileDuration="{Binding FileDuration}" FileUrl="{Binding FileUrl}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" x:Name="player"/>
+        <!--<pages:VideoPlayerView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" x:Name="player" />--> 
+    </Grid>
+
+    <!--<StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+    <Label Text="{Binding FilePath}"></Label>
+    <Button Clicked="Button_OnClicked" Text="Close"></Button>
+    <pages:VideoPlayerView ></pages:VideoPlayerView>-->
+    <!--<customControls:MyVideoPlayer HorizontalOptions="Center" VerticalOptions="Center" FitInWindow="True" HeightRequest="400" WidthRequest="400" FileSource="{Binding FileUrl}" AutoPlay="True" ></customControls:MyVideoPlayer>-->
+    <!--<customControls:VideoPlayer FileUrl="{Binding FileUrl}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" x:Name="video"/>-->
+    <!--<customControls:VideoPlayer Source="{Binding FileUrl}" HorizontalOptions="Fill" VerticalOptions="Fill"  Loop="True"/>-->
+    <!--<forms:MediaElement HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  AreTransportControlsEnabled="true" AutoPlay="True" Source="{Binding FileUrl}" />-->
+    <!--<forms:MediaElement HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsLooping="True"  AreTransportControlsEnabled="true" Source="http://video.ch9.ms/ch9/334f/891b78a5-642d-40b4-8d02-ff40ffdd334f/LoginToLinkedinUSingXamarinAuth_mid.mp4"/>-->
+    <!--Source="https://sec.ch9.ms/ch9/b4ca/4e3d3cb1-4345-467b-9dc7-9fdcc9f6b4ca/VS2017_high.mp4"-->
+    
+  <!--</StackLayout>-->
+    
+    
+    
+    
+</ContentPage>

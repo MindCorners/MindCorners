@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:MindCorners.CustomControls;assembly=MindCorners"
+             xmlns:promptTemplates="clr-namespace:MindCorners.Pages.PromptTemplates;assembly=MindCorners"
+             x:Class="MindCorners.CustomControls.ChatMainAttachment.TextMainAttachmentTemplate">
+    <customControls:CustomFrame VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0" HasShadow="True" ShadowColor="#1D000000" ShadowOffsetY="1" ShadowRadius="2">
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  BackgroundColor="{StaticResource ChatItemAttachmentBackGroundColor}" Padding="10" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Text="{Binding MainAttachment.Text}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" TextColor="#283956" FontSize="16" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
+        </Grid>
+    </customControls:CustomFrame>
+</ViewCell>
